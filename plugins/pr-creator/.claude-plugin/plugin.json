@@ -1,9 +1,9 @@
 {
-    "name": "pr-creator",
-    "version": "1.0.0",
-    "description": "Git commitとPRを作成します",
-    "author": {
-      "name": "yugo-ibuki"
-    },
-    "keywords": ["pr-creator"]
-  }
+  "name": "pr-creator",
+  "version": "1.0.0",
+  "description": "Git commitとPRを作成するプラグイン",
+  "author": {
+    "name": "yugo-ibuki"
+  },
+  "keywords": ["git", "commit", "pull-request", "workflow"]
+}

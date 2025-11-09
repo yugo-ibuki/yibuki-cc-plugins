@@ -1,5 +1,5 @@
 ---
-allowed-tools: 
+allowed-tools:
   - Bash(git add *)
   - Bash(git status *)
   - Bash(git commit *)
