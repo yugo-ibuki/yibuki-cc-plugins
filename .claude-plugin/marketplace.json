@@ -7,7 +7,7 @@
   "plugins": [
     {
       "name": "pr-creator",
-      "source": "./plugins/pr-creator/.claude-plugin",
+      "source": "./plugins/pr-creator",
       "description": "Git commitとPRを作成します",
       "version": "1.0.0",
       "author": {
