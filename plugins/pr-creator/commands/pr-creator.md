@@ -22,7 +22,7 @@ Git commitとPRを作成します。
 
 - PRはmainブランチから作成する
 - `./.github/` 配下に pull_request_template.md 関連のファイルがあればそれをPR作成時に参照
-  - プロジェクトにPRテンプレートがない場合、`./.claude/commands/pr-creator/template.md` を参照
+  - プロジェクトにPRテンプレートがない場合、`./.claude/pr-creator/commands/assets/PR_TEMPALATE.md` を参照
 - PRのテンプレートにある内容は削除しない
 - 日本語で作成する
 
@@ -43,7 +43,7 @@ Git commitとPRを作成します。
 
 4. **PRテンプレートの確認**
    - `./.github/pull_request_template.md` の存在確認
-   - なければ `./.claude/commands/pr-creator/template.md` を使用
+   - なければ `./.claude/pr-creator/commands/template.md` を使用
 
 5. **PR作成**
    - `gh pr create` でPRを作成
