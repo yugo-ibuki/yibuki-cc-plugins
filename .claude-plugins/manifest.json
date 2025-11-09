@@ -1,0 +1,18 @@
+{
+  "name": "yibuki-cc-plugins",
+  "owner": {
+    "name": "yugo-ibuki",
+    "email": "yugo.ibuki@example.com"
+  },
+  "plugins": [
+    {
+      "name": "pr-creator",
+      "source": "./plugins/commands/pr-creator",
+      "description": "Git commitとPRを作成します",
+      "version": "1.0.0",
+      "author": {
+        "name": "yugo-ibuki"
+      }
+    }
+  ]
+}
