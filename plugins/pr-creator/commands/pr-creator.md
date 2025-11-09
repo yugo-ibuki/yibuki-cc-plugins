@@ -10,7 +10,7 @@ allowed-tools:
   - Bash(gh pr view *)
   - Read
 argument-hint: [commit message]
-description: Create a git commit
+description: Create a git pull request
 model: claude-3-5-haiku-20241022
 ---
 
