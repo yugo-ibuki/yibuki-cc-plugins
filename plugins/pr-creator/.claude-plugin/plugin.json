@@ -1,5 +1,5 @@
 {
-  "name": "pr-creation-tools",
+  "name": "pr-creator-plugin",
   "version": "1.0.0",
   "description": "Git commitとPRを作成するプラグイン",
   "author": {

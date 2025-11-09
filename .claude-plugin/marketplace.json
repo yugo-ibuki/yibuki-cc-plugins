@@ -6,7 +6,7 @@
   },
   "plugins": [
     {
-      "name": "pr-creator",
+      "name": "pr-creator-plugin",
       "source": "./plugins/pr-creator",
       "description": "Git commitとPRを作成します",
       "version": "1.0.0",
