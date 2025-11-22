@@ -17,7 +17,7 @@
         {
           "name": "pr-creator",
           "description": "Git commitとPRを作成します",
-          "command": "/pr-creator"
+          "command": "./pr-creator"
         }
       ]
     },
@@ -33,12 +33,12 @@
         {
           "name": "create-doc",
           "description": "新規ドキュメントを作成します",
-          "command": "/create-doc"
+          "command": "./create-doc"
         },
         {
           "name": "update-doc",
           "description": "既存ドキュメントに未記載の変更を追記します",
-          "command": "/update-doc"
+          "command": "./update-doc"
         }
       ]
     }
