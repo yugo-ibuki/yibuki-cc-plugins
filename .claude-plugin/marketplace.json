@@ -12,13 +12,7 @@
       "version": "1.0.0",
       "author": {
         "name": "yugo-ibuki"
-      },
-      "commands": [
-        {
-          "name": "pr-creator",
-          "description": "Git commitとPRを作成します"
-        }
-      ]
+      }
     },
     {
       "name": "custom-doc-plugin",
@@ -27,17 +21,7 @@
       "version": "1.0.0",
       "author": {
         "name": "yugo-ibuki"
-      },
-      "commands": [
-        {
-          "name": "create-doc",
-          "description": "新規ドキュメントを作成します"
-        },
-        {
-          "name": "update-doc",
-          "description": "既存ドキュメントに未記載の変更を追記します"
-        }
-      ]
+      }
     }
   ]
 }
