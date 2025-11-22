@@ -13,6 +13,15 @@
       "author": {
         "name": "yugo-ibuki"
       }
+    },
+    {
+      "name": "custom-doc-plugin",
+      "source": "./plugins/custom-doc",
+      "description": "ドキュメントを作成します",
+      "version": "1.0.0",
+      "author": {
+        "name": "yugo-ibuki"
+      }
     }
   ]
 }
