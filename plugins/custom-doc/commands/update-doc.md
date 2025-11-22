@@ -5,10 +5,10 @@ allowed-tools:
   - Edit
   - Glob
   - Bash
-  - Bash(git add *)
-  - Bash(git status *)
-  - Bash(git diff *)
-  - Bash(python3 *)
+  - Bash(git add:*)
+  - Bash(git status:*)
+  - Bash(git diff:*)
+  - Bash(python3:*)
 description: 既存のカスタムドキュメントを更新
 argument-hint: <ディレクトリ名>
 ---

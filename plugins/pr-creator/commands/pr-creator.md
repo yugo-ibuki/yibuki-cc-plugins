@@ -1,13 +1,13 @@
 ---
 allowed-tools:
-  - Bash(git add *)
-  - Bash(git status *)
-  - Bash(git commit *)
-  - Bash(git diff *)
-  - Bash(git log *)
-  - Bash(git branch *)
-  - Bash(gh pr create *)
-  - Bash(gh pr view *)
+  - Bash(git add:*)
+  - Bash(git status:*)
+  - Bash(git commit:*)
+  - Bash(git diff:*)
+  - Bash(git log:*)
+  - Bash(git branch:*)
+  - Bash(gh pr:create:*)
+  - Bash(gh pr:view:*)
   - Read
 argument-hint: [commit message]
 description: Create a git pull request

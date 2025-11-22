@@ -1,12 +1,12 @@
 ---
 allowed-tools:
-  - Bash(git add *)
-  - Bash(git status *)
-  - Bash(git diff *)
-  - Bash(git log *)
-  - Bash(git branch *)
-  - Bash(gh pr view *)
-  - Bash(mkdir *)
+  - Bash(git add:*)
+  - Bash(git status:*)
+  - Bash(git diff:*)
+  - Bash(git log:*)
+  - Bash(git branch:*)
+  - Bash(gh pr:view:*)
+  - Bash(mkdir:*)
   - Read
   - Write
   - Edit
