@@ -12,14 +12,7 @@
       "version": "1.0.0",
       "author": {
         "name": "yugo-ibuki"
-      },
-      "commands": [
-        {
-          "name": "create-pr",
-          "description": "PRを作成します",
-          "command": "/create-pr"
-        }
-      ]
+      }
     },
     {
       "name": "custom-doc-plugin",
