@@ -30,7 +30,7 @@ argument-hint: <ディレクトリ名>
 マークダウンドキュメント作成後、以下のコマンドでHTMLを生成してください：
 
 ```bash
-python plugins/custom-doc/scripts/markdown-to-html.py .claude/custom-document/[ディレクトリ名]/
+python scripts/markdown-to-html.py .claude/custom-document/[ディレクトリ名]/
 ```
 
 生成されるHTMLには以下の機能が含まれます：
