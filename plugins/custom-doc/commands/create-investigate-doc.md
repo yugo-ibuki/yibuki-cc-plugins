@@ -18,7 +18,7 @@ argument-hint: <ディレクトリ名>
 
 ## 実行内容
 
-コードベースの調査結果をまとめた調査レポートを `.claude/custom-document` 配下に作成してください。
+コードベースの調査結果をまとめた調査レポートを `.claude/custom-documents` 配下に作成してください。
 
 ### ディレクトリ命名規則
 - **名前の指定がない場合**: 調査対象のコンポーネントやモジュール名から自動生成（例: `auth-system-investigation`, `api-flow-analysis`）
