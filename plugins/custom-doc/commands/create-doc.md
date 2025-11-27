@@ -18,7 +18,7 @@ argument-hint: <ディレクトリ名>
 
 ## 実行内容
 
-.claude/custom-document にドキュメントを作成してください。ディレクトリの名前は以下を参考にしてください。
+.claude/custom-documents にドキュメントを作成してください。ディレクトリの名前は以下を参考にしてください。
 - 名前の指定がない場合今回のセッションのこれまでの会話を元にまとめた名前
 - 指定がある場合はそれに従った名前
 
@@ -30,7 +30,7 @@ argument-hint: <ディレクトリ名>
 マークダウンドキュメント作成後、以下のコマンドでHTMLを生成してください：
 
 ```bash
-python scripts/markdown-to-html.py .claude/custom-document/[ディレクトリ名]/
+python scripts/markdown-to-html.py .claude/custom-documents/[ディレクトリ名]/
 ```
 
 生成されるHTMLには以下の機能が含まれます：
