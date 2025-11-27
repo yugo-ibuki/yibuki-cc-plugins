@@ -92,7 +92,7 @@ A  src/auth/session.ts      ← 未記載（追記対象）
 ```bash
 /update-doc
 ```
-1. `.claude/custom-document/` 内の全ドキュメントをリスト表示
+1. `.claude/custom-documents/` 内の全ドキュメントをリスト表示
    ```
    以下のドキュメントが見つかりました：
    1. feature-auth-login
@@ -165,7 +165,7 @@ echo "選択: $SELECTED"
    - Staged/Unstaged/Untracked すべてを対象とする
 
 2. **対象ドキュメントの選択**
-   - 指定されたディレクトリを `.claude/custom-document/` 内で検索
+   - 指定されたディレクトリを `.claude/custom-documents/` 内で検索
    - ヘルパースクリプトで絞り込み・選択
 
 3. **既存ドキュメントの解析**
