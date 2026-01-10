@@ -1,23 +1,11 @@
 ---
 name: search-related-docs
-description: Search and identify related documents to complement context during command execution
-version: 1.0.0
-author: yugo-ibuki
-keywords:
-  - search
-  - related
-  - context
-  - documents
-  - git
-  - worktree
-used-by:
-  - /create-doc
-  - /update-doc
-  - /create-investigate-doc
-  - /update-investigate-doc
-dependencies:
-  - git (for file change detection)
-  - .claude/custom-documents directory
+description: コマンド実行時に関連ドキュメントを検索・特定するスキル。/create-doc, /update-doc, /create-investigate-doc, /update-investigate-doc で使用。git status で変更ファイルを検出し、.claude/custom-documents/ 内の既存ドキュメントと照合する。
+allowed-tools:
+  - Read
+  - Glob
+  - Bash(git status:*)
+  - Bash(git diff:*)
 ---
 
 # search-related-docs スキル
@@ -102,7 +90,7 @@ dependencies:
 ```markdown
 ## ドキュメント作成前の確認
 
-ドキュメント作成前に `skills/search-related-docs.md` を参照し：
+ドキュメント作成前に `skills/search-related-docs` を参照し：
 
 1. 関連ドキュメントを検索
 2. 高関連度のドキュメントがあれば確認を求める
@@ -117,7 +105,7 @@ dependencies:
 ```markdown
 ## 更新対象の特定
 
-`skills/search-related-docs.md` を使用して：
+`skills/search-related-docs` を使用して：
 
 1. 現在の変更に最も関連するドキュメントを特定
 2. 複数候補がある場合は選択を求める

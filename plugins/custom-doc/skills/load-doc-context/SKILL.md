@@ -1,23 +1,9 @@
 ---
 name: load-doc-context
-description: Load documents and incorporate them as session context for seamless workflow continuation
-version: 1.0.0
-author: yugo-ibuki
-keywords:
-  - load
-  - context
-  - documents
-  - session
-  - worktree
-  - continuity
-used-by:
-  - /create-doc
-  - /update-doc
-  - /create-investigate-doc
-  - /update-investigate-doc
-dependencies:
-  - search-related-docs (for document discovery)
-  - .claude/custom-documents directory
+description: ドキュメントを読み込んでセッションのコンテキストとして取り込むスキル。search-related-docs でマッチした後に発動。マークダウン構造を解析し、ファイル一覧を抽出、worktree間の並行開発用にコンテキストサマリーを生成する。
+allowed-tools:
+  - Read
+  - Glob
 ---
 
 # load-doc-context スキル

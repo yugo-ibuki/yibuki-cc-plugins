@@ -15,8 +15,8 @@ argument-hint: <ディレクトリ名>
 
 ## 参照スキル
 
-- `skills/search-related-docs.md` - 関連ドキュメント検索・特定
-- `skills/load-doc-context.md` - 既存ドキュメントの読み込み
+- `skills/search-related-docs/SKILL.md` - 関連ドキュメント検索・特定
+- `skills/load-doc-context/SKILL.md` - 既存ドキュメントの読み込み
 
 ## 実行内容
 

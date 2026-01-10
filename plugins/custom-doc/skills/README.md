@@ -2,6 +2,21 @@
 
 カスタムドキュメントプラグインのスキル定義ディレクトリ
 
+## ディレクトリ構造
+
+```
+skills/
+├── README.md
+├── search-related-docs/
+│   └── SKILL.md
+├── load-doc-context/
+│   └── SKILL.md
+├── doc-to-html/
+│   └── SKILL.md
+├── example-doc.md
+└── example-doc.html
+```
+
 ## スキル一覧
 
 ### search-related-docs（内部スキル）
@@ -30,7 +45,7 @@
 
 ---
 
-### doc-to-html
+### doc-to-html（ユーザー呼び出し可能）
 
 マークダウンドキュメントを読みやすいHTMLに変換するスキル
 
@@ -69,24 +84,44 @@ HTMLをブラウザで開いて機能を確認できます：
 open plugins/custom-doc/skills/example-doc.html
 ```
 
-## カスタマイズ
+## スキルの追加方法
 
-HTMLのデザインやスタイルをカスタマイズしたい場合は、以下のファイルを編集してください：
+新しいスキルを追加する場合は、ディレクトリを作成して `SKILL.md` ファイルを配置してください：
 
-- `scripts/markdown-to-html.py` - HTMLテンプレートとCSS定義
-- `skills/doc-to-html.md` - スキルのドキュメント
+```
+skills/
+└── new-skill-name/
+    └── SKILL.md
+```
 
-## スキル定義の追加
-
-新しいスキルを追加する場合は、このディレクトリに `.md` ファイルを作成してください。
+SKILL.md のフォーマット：
 
 ```markdown
 ---
 name: skill-name
-description: スキルの説明
+description: スキルの説明（自動呼び出しのマッチングに使用）
+allowed-tools:
+  - Read
+  - Write
+  - Bash(specific:*)
+user-invocable: false  # ユーザーが直接呼び出せる場合は true
 ---
 
 # スキル名
 
 スキルの詳細な説明...
 ```
+
+## 公式フロントマターフィールド
+
+| フィールド | 説明 |
+|------------|------|
+| name | スキル名 |
+| description | 説明（自動呼び出しのマッチングに使用） |
+| allowed-tools | スキルが使用できるツール |
+| model | 使用するモデル（オプション） |
+| context | 含めるコンテキストファイル（オプション） |
+| agent | エージェント設定（オプション） |
+| hooks | 実行前後のフック（オプション） |
+| user-invocable | ユーザーが直接呼び出せるか（デフォルト: false） |
+| disable-model-invocation | モデルによる自動呼び出しを無効化（オプション） |

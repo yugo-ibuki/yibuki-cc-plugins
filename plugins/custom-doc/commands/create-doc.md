@@ -18,8 +18,8 @@ argument-hint: <ディレクトリ名>
 
 ## 参照スキル
 
-- `skills/search-related-docs.md` - 関連ドキュメント検索
-- `skills/load-doc-context.md` - コンテキスト読み込み
+- `skills/search-related-docs/SKILL.md` - 関連ドキュメント検索
+- `skills/load-doc-context/SKILL.md` - コンテキスト読み込み
 
 ## 実行フロー
 
