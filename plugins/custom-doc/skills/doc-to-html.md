@@ -1,6 +1,23 @@
 ---
 name: doc-to-html
-description: マークダウンドキュメントを読みやすいHTMLに変換
+description: Convert markdown documents to readable HTML with floating TOC, copy functionality, and toggle sections
+version: 1.0.0
+author: yugo-ibuki
+keywords:
+  - html
+  - markdown
+  - conversion
+  - toc
+  - documentation
+  - responsive
+used-by:
+  - /create-doc (post-processing)
+  - /update-doc (post-processing)
+  - /create-investigate-doc (post-processing)
+  - /update-investigate-doc (post-processing)
+dependencies:
+  - python3
+  - scripts/markdown-to-html.py
 ---
 
 # ドキュメントHTML化スキル

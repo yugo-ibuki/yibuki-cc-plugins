@@ -4,6 +4,32 @@
 
 ## スキル一覧
 
+### search-related-docs（内部スキル）
+
+コマンド実行時に関連ドキュメントを検索・特定するスキル。
+
+**使用コマンド:** `/create-doc`, `/update-doc`, `/create-investigate-doc`, `/update-investigate-doc`
+
+**機能:**
+- `git status` の変更ファイルと既存ドキュメントを照合
+- 関連度スコアリング（ファイル一致、ディレクトリ一致、キーワード一致）
+- 高関連度のドキュメントを候補として提示
+- ユーザーに確認を求める
+
+### load-doc-context（内部スキル）
+
+ドキュメントを読み込んでコンテキストとして取り込むスキル。
+
+**使用コマンド:** `/create-doc`, `/update-doc`, `/create-investigate-doc`, `/update-investigate-doc`
+
+**機能:**
+- ドキュメント内容を構造化して解析
+- 記載済みファイル一覧を抽出
+- コンテキストサマリーを生成
+- 差分検出（update-doc, update-investigate-doc 用）
+
+---
+
 ### doc-to-html
 
 マークダウンドキュメントを読みやすいHTMLに変換するスキル

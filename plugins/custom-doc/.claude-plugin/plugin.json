@@ -1,9 +1,9 @@
 {
   "name": "custom-doc-plugin",
-  "version": "1.0.0",
-  "description": "カスタムドキュメントの作成・更新を行うプラグイン",
+  "version": "1.1.0",
+  "description": "カスタムドキュメントの作成・更新・検索・コンテキスト共有を行うプラグイン",
   "author": {
     "name": "yugo-ibuki"
   },
-  "keywords": ["document", "create", "update", "workflow", "session"]
+  "keywords": ["document", "create", "update", "workflow", "session", "context", "search", "related", "worktree"]
 }
