@@ -35,6 +35,7 @@ Task tool:
 3. `docs/PROJECT_REFERENCES.md`
 4. `.claude/GLOSSARY.md`
 5. `GLOSSARY.md`
+6. `.local.env`（環境変数のキー名から用語を推測）
 
 用語集があると、キーワード検索の精度が大幅に向上します。
 

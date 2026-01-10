@@ -21,10 +21,11 @@ allowed-tools:
 3. `docs/PROJECT_REFERENCES.md`
 4. `.claude/GLOSSARY.md`
 5. `GLOSSARY.md`
+6. `.local.env`（環境変数のキー名から用語を推測）
 
 ```bash
 # 検索パターン
-find . -maxdepth 3 \( -name "PROJECT_REFERENCES.md" -o -name "GLOSSARY.md" \) 2>/dev/null
+find . -maxdepth 3 \( -name "PROJECT_REFERENCES.md" -o -name "GLOSSARY.md" -o -name ".local.env" \) 2>/dev/null
 ```
 
 ## 期待されるフォーマット
