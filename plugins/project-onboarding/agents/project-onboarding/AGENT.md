@@ -26,6 +26,18 @@ Task tool:
   prompt: "ログイン機能に関連するファイルを探して"
 ```
 
+## PROJECT_REFERENCES.md の優先読み込み順序
+
+プロジェクト用語集は以下の順序で検索し、最初に見つかったものを使用:
+
+1. `.claude/PROJECT_REFERENCES.md`（推奨）
+2. `PROJECT_REFERENCES.md`（プロジェクトルート）
+3. `docs/PROJECT_REFERENCES.md`
+4. `.claude/GLOSSARY.md`
+5. `GLOSSARY.md`
+
+用語集があると、キーワード検索の精度が大幅に向上します。
+
 ## 対応するタスク
 
 ### 1. プロジェクト概要の取得
