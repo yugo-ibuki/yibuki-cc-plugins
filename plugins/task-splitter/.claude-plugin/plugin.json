@@ -1,0 +1,9 @@
+{
+  "name": "task-splitter",
+  "version": "1.0.0",
+  "description": "タスクを分析して並列実行可能なサブタスクに分割し、各サブタスクに関連ファイルを紐付ける",
+  "author": {
+    "name": "yugo-ibuki"
+  },
+  "keywords": ["task", "split", "parallel", "orchestration", "planning", "workflow"]
+}
