@@ -25,7 +25,7 @@ allowed-tools:
 - `README.md` / `README.*` - プロジェクト概要
 - `CLAUDE.md` - Claude Code用の指示
 - `package.json` / `Cargo.toml` / `pyproject.toml` / `go.mod` - 依存関係・プロジェクト情報
-- `.env.example` / `.env.sample` - 環境変数
+- `.env.example` / `.env.sample` / `.local.env` - 環境変数
 - `Makefile` / `Dockerfile` / `docker-compose.yml` - ビルド・実行環境
 
 ### 2. ディレクトリ構造
