@@ -22,6 +22,15 @@
       "author": {
         "name": "yugo-ibuki"
       }
+    },
+    {
+      "name": "branch-guard-plugin",
+      "source": "./plugins/branch-guard",
+      "description": "ブランチ名の命名規約を強制するガードレールプラグイン",
+      "version": "1.0.0",
+      "author": {
+        "name": "yugo-ibuki"
+      }
     }
   ]
 }
