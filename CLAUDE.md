@@ -4,32 +4,36 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This is a Claude Code plugin collection repository (`yibuki-cc-plugins`). It provides custom slash commands that extend Claude Code's capabilities through the `.claude-plugin` system.
+Claude Code plugin collection repository (`yibuki-cc-plugins`). Provides custom slash commands and skills that extend Claude Code's capabilities through the `.claude-plugin` system.
 
 ## Architecture
 
 ```
-.claude-plugin/marketplace.json    # Plugin registry - lists all available plugins
+.claude-plugin/marketplace.json    # Plugin registry
 plugins/
-  ├── pr-creator/                  # Git commit & PR creation plugin
+  ├── pr-creator/                  # Git commit & PR creation
   │   ├── .claude-plugin/plugin.json
-  │   ├── commands/pr-creator.md   # Slash command definition
+  │   ├── commands/pr-creator.md
   │   └── assets/PR_TEMPLATE.md
-  └── custom-doc/                  # Documentation management plugin
+  └── custom-doc/                  # Documentation management
       ├── .claude-plugin/plugin.json
-      ├── commands/                # Slash command definitions
-      │   ├── create-doc.md        # /create-doc command
-      │   ├── create-investigate-doc.md  # /create-investigate-doc command
-      │   └── update-doc.md        # /update-doc command
-      ├── scripts/                 # Helper scripts
-      │   ├── markdown-to-html.py  # MD→HTML converter with TOC
-      │   └── select-doc.py        # Interactive document selector
-      └── skills/                  # Skill definitions and examples
+      ├── commands/                # Slash commands
+      │   ├── create-doc.md
+      │   ├── update-doc.md
+      │   ├── create-investigate-doc.md
+      │   └── update-investigate-doc.md
+      ├── scripts/
+      │   ├── markdown-to-html.py
+      │   └── select-doc.py
+      └── skills/                  # Internal skills (auto-invoked by commands)
+          ├── search-related-docs.md
+          ├── load-doc-context.md
+          └── doc-to-html.md
 ```
 
-## Plugin Command Structure
+## Command Definition Format
 
-Each command is defined as a markdown file with YAML frontmatter:
+Commands (`commands/*.md`) use YAML frontmatter:
 
 ```yaml
 ---
@@ -37,43 +41,59 @@ allowed-tools:          # Tools the command can use
   - Bash(git:*)
   - Read
   - Write
-description:            # Brief description shown in command list
+description:            # Brief description (shown in command list)
 argument-hint:          # Placeholder for arguments
-model:                  # Optional: specific model to use
+model:                  # Optional: specific model
+---
+```
+
+## Skill Definition Format
+
+Skills (`skills/*.md`) use YAML frontmatter with official fields only:
+
+```yaml
+---
+name: skill-name                    # Required: lowercase, hyphens, max 64 chars
+description: What it does and when  # Required: max 1024 chars, include triggers
+version: "1.0.0"                    # Optional
+model: claude-sonnet-4-20250514              # Optional
+allowed-tools:                      # Optional: limit available tools
+  - Read
+  - Glob
+disable-model-invocation: false     # Optional: prevent auto-invocation
 ---
 ```
 
 ## Available Commands
 
-| Command | Plugin | Description |
-|---------|--------|-------------|
-| `/pr-creator` | pr-creator-plugin | Creates git commits and PRs |
-| `/create-doc` | custom-doc-plugin | Creates documentation in `.claude/custom-documents/` |
-| `/create-investigate-doc` | custom-doc-plugin | Creates investigation reports for codebase analysis |
-| `/update-doc` | custom-doc-plugin | Updates existing documentation with new changes |
+| Command | Description |
+|---------|-------------|
+| `/pr-creator` | Creates git commits and PRs |
+| `/create-doc` | Creates documentation in `.claude/custom-documents/` |
+| `/update-doc` | Updates existing documentation |
+| `/create-investigate-doc` | Creates investigation reports |
+| `/update-investigate-doc` | Updates investigation reports |
 
 ## Scripts
 
-**Generate HTML from Markdown:**
 ```bash
+# Generate HTML from Markdown
 python plugins/custom-doc/scripts/markdown-to-html.py <file_or_directory>
-```
 
-**Interactive Document Selection:**
-```bash
+# Interactive document selection
 python plugins/custom-doc/scripts/select-doc.py [keyword]
 ```
 
 ## Adding New Plugins
 
-1. Create directory: `plugins/<plugin-name>/`
-2. Add plugin.json: `plugins/<plugin-name>/.claude-plugin/plugin.json`
-3. Add command files: `plugins/<plugin-name>/commands/<command>.md`
+1. Create `plugins/<plugin-name>/`
+2. Add `plugins/<plugin-name>/.claude-plugin/plugin.json`
+3. Add commands in `commands/` and/or skills in `skills/`
 4. Register in `.claude-plugin/marketplace.json`
 
 ## Key Patterns
 
-- Documents created by custom-doc go to `.claude/custom-documents/<name>/` in target projects
-- All commands in Japanese (日本語)
-- PR creation flows: status → diff → add → commit → create PR via `gh`
-- Document updates track git changes and only add unrecorded files
+- Documents go to `.claude/custom-documents/<name>/` in target projects
+- Commands reference skills via `## 参照スキル` section
+- Skills auto-search related docs before create/update operations
+- All user-facing text in Japanese (日本語)
