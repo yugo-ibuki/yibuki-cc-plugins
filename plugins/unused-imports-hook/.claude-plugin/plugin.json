@@ -5,5 +5,18 @@
   "author": {
     "name": "yugo-ibuki"
   },
-  "keywords": ["hook", "import", "lint", "cleanup", "pre-commit"]
+  "keywords": ["hook", "import", "lint", "cleanup", "pre-commit"],
+  "hooks": {
+    "PreToolCall": [
+      {
+        "matcher": "Bash(git commit:*)",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash ${PLUGIN_DIR}/scripts/remove-unused-imports.sh"
+          }
+        ]
+      }
+    ]
+  }
 }
