@@ -18,6 +18,7 @@ argument-hint: <キーワードまたはタスク名>
 
 - `skills/find-related-files/SKILL.md` - 関連ファイル検索
 - `skills/load-project-references/SKILL.md` - プロジェクト用語集の読み込み
+- `skills/analyze-imports/SKILL.md` - import解析・逆参照・monorepo対応
 
 ## 使用方法
 
@@ -82,6 +83,26 @@ grep -h "^import\|^from\|require(" <file> 2>/dev/null
 grep -h "^import\|^from" <file> 2>/dev/null
 ```
 
+### Step 6: Import解析と逆参照（analyze-imports スキル）
+
+`analyze-imports` スキルを使用して詳細な依存関係を調査:
+
+1. **順方向解析**: ファイルがimportしているモジュール一覧
+2. **逆方向解析**: そのファイルをimportしているファイルを検索
+3. **monorepo検出**: pnpm-workspace.yaml, turbo.json, lerna.json 等を検出
+4. **パッケージ間依存**: どのパッケージ/アプリから呼ばれているかを整理
+
+```bash
+# monorepo構成の検出
+find . -maxdepth 2 \( -name "pnpm-workspace.yaml" -o -name "turbo.json" -o -name "lerna.json" \) 2>/dev/null
+
+# 逆参照の検索（ファイルを使用している箇所）
+grep -rl "from ['\"].*targetModule" apps/ packages/ --include="*.ts" 2>/dev/null
+
+# パッケージ名での参照
+grep -rl "@myorg/package-name" . --include="*.ts" --include="*.tsx" 2>/dev/null
+```
+
 ## 出力フォーマット
 
 ```markdown
@@ -106,15 +127,55 @@ grep -h "^import\|^from" <file> 2>/dev/null
 - `tests/auth/login.test.ts` - ログイン機能のテスト
 - `tests/components/LoginForm.test.tsx` - UIコンポーネントテスト
 
-## 依存関係図
+## 依存関係（Dependencies）
+
+このファイルがimportしているもの:
+| モジュール | 種別 | 用途 |
+|-----------|------|------|
+| `./utils/validation` | 内部 | 入力検証 |
+| `@myorg/shared` | monorepoパッケージ | 共通型定義 |
+| `axios` | 外部パッケージ | HTTP通信 |
+
+## 逆参照（Dependents）
+
+このファイルを使用しているもの:
+
+**同一パッケージ内:**
+| ファイル | import内容 |
+|---------|-----------|
+| `src/pages/LoginPage.tsx` | `{ login, logout }` |
+| `src/hooks/useAuth.ts` | `* as authService` |
+
+**他パッケージから（monorepo）:**
+| パッケージ | ファイル | 用途 |
+|-----------|---------|------|
+| `apps/web` | `src/auth/index.ts` | Webアプリ認証 |
+| `apps/admin` | `src/lib/auth.ts` | 管理画面認証 |
+
+## 依存関係ツリー
 
 ```
 LoginPage.tsx
-  └── LoginForm.tsx
-        └── useAuth.ts
-              └── authService.ts
-                    └── api.ts
+├── imports:
+│   ├── LoginForm.tsx
+│   │   └── useAuth.ts
+│   │       └── authService.ts
+│   │           ├── api.ts
+│   │           └── @myorg/shared
+│   └── @myorg/ui (Button, Input)
+│
+└── imported by:
+    ├── [apps/web] App.tsx
+    └── [apps/admin] routes.tsx
 ```
+
+## monorepo パッケージマップ
+
+| パッケージ | パス | 関係 | 参照数 |
+|-----------|------|------|-------|
+| @myorg/web | apps/web | 使用元 | 3 |
+| @myorg/admin | apps/admin | 使用元 | 1 |
+| @myorg/shared | packages/shared | 依存先 | - |
 
 ## プロジェクト用語との関連（PROJECT_REFERENCESより）
 
@@ -127,6 +188,7 @@ LoginPage.tsx
 - まず `src/auth/login.ts` を確認してください（メイン実装）
 - テストは `tests/auth/login.test.ts` を参照
 - UIの変更は `src/components/LoginForm.tsx` から
+- **monorepo注意**: `apps/web` と `apps/admin` の両方で影響があるため、両パッケージでテストを実行してください
 ```
 
 ## 注意事項

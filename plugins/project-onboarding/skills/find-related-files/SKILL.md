@@ -55,6 +55,23 @@ find . -type d -name "*keyword*" 2>/dev/null
 - **間接関連**: import/require で参照されている
 - **テスト関連**: 対応するテストファイル
 
+### 5. Import解析（analyze-imports スキルを使用）
+
+見つかった主要ファイルに対して `analyze-imports` スキルを実行:
+
+- **Dependencies（順方向）**: そのファイルがimportしているモジュール
+- **Dependents（逆方向）**: そのファイルをimportしているファイル
+- **monorepo解析**: どのパッケージ/アプリから呼ばれているか
+
+```bash
+# 逆参照の検索例
+# src/services/authService.ts を参照しているファイル
+grep -rl "authService\|from ['\"].*auth" --include="*.ts" --include="*.tsx" .
+
+# monorepoパッケージからの参照
+grep -rl "@myorg/auth\|from ['\"]@" apps/ packages/ --include="*.ts" 2>/dev/null
+```
+
 ## 出力フォーマット
 
 ```markdown
@@ -79,15 +96,35 @@ find . -type d -name "*keyword*" 2>/dev/null
 - `tests/auth/login.test.ts`
 - `tests/components/LoginForm.test.tsx`
 
-### 依存関係
+### 依存関係（Dependencies）
 
-このファイルは以下を使用:
-- `src/utils/validation.ts` - 入力バリデーション
-- `src/services/api.ts` - API通信
+このファイルがimportしているもの:
+| モジュール | 種別 |
+|-----------|------|
+| `src/utils/validation.ts` | 内部モジュール |
+| `src/services/api.ts` | 内部モジュール |
+| `axios` | 外部パッケージ |
 
-このファイルを使用しているもの:
+### 逆参照（Dependents）
+
+このファイルをimportしているもの:
+
+**同一パッケージ内:**
 - `src/pages/LoginPage.tsx`
 - `src/App.tsx`
+
+**他パッケージから（monorepo）:**
+| パッケージ | ファイル |
+|-----------|---------|
+| `apps/web` | `src/features/auth/index.ts` |
+| `apps/admin` | `src/lib/auth.ts` |
+
+### monorepo影響範囲
+
+| パッケージ | 参照数 | 役割 |
+|-----------|-------|------|
+| @myorg/web | 3 | メインWebアプリ |
+| @myorg/admin | 1 | 管理画面 |
 
 ### プロジェクト固有の用語（PROJECT_REFERENCESより）
 
