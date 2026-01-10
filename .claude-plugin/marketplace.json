@@ -22,6 +22,15 @@
       "author": {
         "name": "yugo-ibuki"
       }
+    },
+    {
+      "name": "unused-imports-hook-plugin",
+      "source": "./plugins/unused-imports-hook",
+      "description": "コミット前に未使用のimportを自動削除するフック",
+      "version": "1.0.0",
+      "author": {
+        "name": "yugo-ibuki"
+      }
     }
   ]
 }

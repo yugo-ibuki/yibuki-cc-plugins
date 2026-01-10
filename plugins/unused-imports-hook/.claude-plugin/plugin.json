@@ -1,0 +1,9 @@
+{
+  "name": "unused-imports-hook-plugin",
+  "version": "1.0.0",
+  "description": "コミット前に未使用のimportを自動削除するフックプラグイン",
+  "author": {
+    "name": "yugo-ibuki"
+  },
+  "keywords": ["hook", "import", "lint", "cleanup", "pre-commit"]
+}
