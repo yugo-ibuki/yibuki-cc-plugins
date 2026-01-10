@@ -12,16 +12,22 @@ allowed-tools:
 
 プロジェクト固有の用語集（PROJECT_REFERENCES.md）を読み込み、検索の精度を向上させます。
 
-## 参照ファイルの検索
+## 優先読み込みファイル
 
-以下の場所を順に検索:
-
-1. `.claude/PROJECT_REFERENCES.md`
+### プロジェクト用語集
+1. `.claude/PROJECT_REFERENCES.md`（推奨）
 2. `PROJECT_REFERENCES.md`（プロジェクトルート）
 3. `docs/PROJECT_REFERENCES.md`
 4. `.claude/GLOSSARY.md`
 5. `GLOSSARY.md`
 6. `.local.env`（環境変数のキー名から用語を推測）
+
+### プロジェクト情報
+- `README.md` / `README.*` - プロジェクト概要
+- `CLAUDE.md` - Claude Code用の指示
+- `package.json` / `Cargo.toml` / `pyproject.toml` / `go.mod` - 依存関係・プロジェクト情報
+- `.env.example` / `.env.sample` - 環境変数
+- `Makefile` / `Dockerfile` / `docker-compose.yml` - ビルド・実行環境
 
 ```bash
 # 検索パターン

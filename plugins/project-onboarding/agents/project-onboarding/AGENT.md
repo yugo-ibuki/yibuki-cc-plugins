@@ -26,16 +26,22 @@ Task tool:
   prompt: "ログイン機能に関連するファイルを探して"
 ```
 
-## PROJECT_REFERENCES.md の優先読み込み順序
+## 優先読み込みファイル
 
-プロジェクト用語集は以下の順序で検索し、最初に見つかったものを使用:
-
+### プロジェクト用語集
 1. `.claude/PROJECT_REFERENCES.md`（推奨）
 2. `PROJECT_REFERENCES.md`（プロジェクトルート）
 3. `docs/PROJECT_REFERENCES.md`
 4. `.claude/GLOSSARY.md`
 5. `GLOSSARY.md`
 6. `.local.env`（環境変数のキー名から用語を推測）
+
+### プロジェクト情報
+- `README.md` / `README.*` - プロジェクト概要
+- `CLAUDE.md` - Claude Code用の指示
+- `package.json` / `Cargo.toml` / `pyproject.toml` / `go.mod` - 依存関係・プロジェクト情報
+- `.env.example` / `.env.sample` - 環境変数
+- `Makefile` / `Dockerfile` / `docker-compose.yml` - ビルド・実行環境
 
 用語集があると、キーワード検索の精度が大幅に向上します。
 
