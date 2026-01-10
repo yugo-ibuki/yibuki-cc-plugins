@@ -48,6 +48,18 @@ find . -type f -not -path '*/node_modules/*' -not -path '*/.git/*' | cut -d/ -f2
 
 `load-project-references` スキルを使用して、プロジェクト固有の用語を取得。
 
+スキルから返されるセクション情報を動的にMarkdownテーブルとして出力:
+
+```markdown
+### {セクション名}
+
+| {カラム1} | {カラム2} | ... |
+|----------|----------|-----|
+| {データ}  | {データ}  | ... |
+```
+
+セクション名とカラム名は `load-project-references` が返す構造に従う。
+
 ### Step 4: 技術スタックの検出
 
 以下を自動検出:
@@ -112,7 +124,7 @@ git branch -r
 
 ## プロジェクト固有の用語
 
-{project_references_table}
+{project_references_sections}
 
 ## 最近の開発状況
 

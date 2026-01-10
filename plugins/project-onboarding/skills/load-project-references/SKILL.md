@@ -31,6 +31,8 @@ find . -maxdepth 3 \( -name "PROJECT_REFERENCES.md" -o -name "GLOSSARY.md" \) 2>
 
 ### PROJECT_REFERENCES.md の構造
 
+**セクション名は柔軟にカスタマイズ可能です。** `##` で始まる見出しを自動検出し、配下のMarkdownテーブルを解析します。
+
 ```markdown
 # プロジェクト用語集
 
@@ -54,33 +56,55 @@ find . -maxdepth 3 \( -name "PROJECT_REFERENCES.md" -o -name "GLOSSARY.md" \) 2>
 |-------------|------|-------------|
 | src/domain/ | ドメインモデル | Entity, ValueObject |
 | src/infra/ | インフラ層 | DB接続, 外部API |
-
-## 略語・別名
-
-| 略語 | 正式名称 | 備考 |
-|------|---------|------|
-| WS | Workspace | 内部での省略形 |
-| Repo | Repository | コード内での命名 |
 ```
+
+### フォーマット柔軟性
+
+- **セクション名**: 任意（`## ビジネス概念`, `## アーキテクチャ用語` など）
+- **カラム名**: 最初のヘッダー行から自動検出
+- **カラム数**: 可変（2列でも5列でも対応）
+
+例:
+
+```markdown
+## ビジネス概念
+
+| 概念 | 定義 | 実装場所 | 備考 |
+|------|------|---------|------|
+| 契約 | 顧客との契約情報 | `src/contracts/` | ... |
+
+## モジュール構成
+
+| モジュール | 責務 |
+|-----------|------|
+| auth | 認証・認可 |
+```
+
+## 解析ロジック
+
+1. `##` で始まる行をセクションとして検出
+2. 各セクション配下のMarkdownテーブル（`|` で区切られた行）を抽出
+3. ヘッダー行（最初のテーブル行）からカラム名を取得
+4. データ行を構造化データとして格納
 
 ## 出力
 
-読み込んだ情報を構造化して返却:
+読み込んだ情報を構造化して返却（セクション名をキーとした動的構造）:
 
 ```json
 {
-  "domain_terms": [
-    {
-      "term": "ワークスペース",
-      "description": "ユーザーの作業領域",
-      "related_paths": ["src/workspace/", "models/Workspace.ts"]
+  "sections": {
+    "ドメイン用語": {
+      "headers": ["用語", "説明", "関連ファイル/ディレクトリ"],
+      "rows": [
+        ["ワークスペース", "ユーザーの作業領域", "src/workspace/, models/Workspace.ts"],
+        ["タスク", "実行可能な作業単位", "src/tasks/, models/Task.ts"]
+      ]
+    },
+    "技術用語": {
+      "headers": ["用語", "説明", "関連ファイル/ディレクトリ"],
+      "rows": [...]
     }
-  ],
-  "technical_terms": [...],
-  "directories": [...],
-  "aliases": {
-    "WS": "Workspace",
-    "Repo": "Repository"
   }
 }
 ```
