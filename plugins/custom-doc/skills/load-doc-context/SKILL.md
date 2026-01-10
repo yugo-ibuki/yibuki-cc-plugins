@@ -1,153 +1,153 @@
 ---
 name: load-doc-context
-description: Load documents and incorporate them as session context for seamless workflow continuation. Triggers after search-related-docs finds matches. Parses markdown structure, extracts file lists, and generates context summaries for worktree-based parallel development.
+description: ドキュメントを読み込んでセッションのコンテキストとして取り込むスキル。search-related-docs でマッチした後に発動。マークダウン構造を解析し、ファイル一覧を抽出、worktree間の並行開発用にコンテキストサマリーを生成する。
 allowed-tools:
   - Read
   - Glob
 ---
 
-# load-doc-context Skill
+# load-doc-context スキル
 
-Internal skill for loading documents and incorporating them as session context.
+ドキュメントを読み込んでセッションのコンテキストとして取り込むための内部スキル。
 
-## Purpose
+## 目的
 
-For documents identified by search:
-1. Load and parse content
-2. Extract important information
-3. Utilize as current session context
+検索で特定したドキュメントを：
+1. 読み込んで内容を解析
+2. 重要な情報を抽出
+3. 現在のセッションのコンテキストとして活用
 
-## Loading Flow
+## 読み込みフロー
 
 ```
-1. Receive target document path
-2. List .md files in directory
-3. Load each file's content
-4. Generate structured context
-5. Incorporate into session
+1. 対象ドキュメントのパスを受け取る
+2. ディレクトリ内の .md ファイルを列挙
+3. 各ファイルの内容を読み込み
+4. 構造化されたコンテキストを生成
+5. セッションに取り込み
 ```
 
-## Extracted Information
+## 抽出する情報
 
-### Required Items
+### 必須項目
 
-| Section | Extracted Content | Usage |
-|---------|-------------------|-------|
-| Summary | Overall description | Context understanding |
-| Changed Files | File path list | Duplicate check, relevance judgment |
-| Implementation | Specific changes | Implementation reference |
+| セクション | 抽出内容 | 用途 |
+|------------|----------|------|
+| 概要 | 全体の説明 | コンテキストの把握 |
+| 変更したファイル | ファイルパス一覧 | 重複チェック、関連性判定 |
+| 実装内容 | 具体的な変更点 | 実装の参考 |
 
-### Optional Items (Extract if Present)
+### 任意項目（存在すれば抽出）
 
-| Section | Extracted Content | Usage |
-|---------|-------------------|-------|
-| Technical Background | Technical information | Implementation decision reference |
-| Technical Decisions | Design rationale | Maintain consistency |
-| Notes/Constraints | Constraints | Avoid issues |
-| Security Aspects | Security measures | Ensure security |
+| セクション | 抽出内容 | 用途 |
+|------------|----------|------|
+| 技術的な背景・解説 | 技術情報 | 実装判断の参考 |
+| 技術的な判断・設計決定 | 設計理由 | 一貫性の維持 |
+| 注意点・制約 | 制約事項 | 問題の回避 |
+| セキュリティ観点 | セキュリティ対策 | セキュリティ確保 |
 
-## Output Format
+## 出力フォーマット
 
-### Context Summary
+### コンテキストサマリー
 
 ```markdown
 ---
-📚 Context loaded: feature-auth-login
+📚 コンテキスト読み込み完了: feature-auth-login
 ---
 
-## Summary
-Login feature implementation. Session management using JWT authentication.
+## 概要
+ログイン機能の実装。JWT認証を使用したセッション管理。
 
-## Previously Changed Files
-- `src/auth/login.ts` - Login processing
-- `src/auth/middleware.ts` - Auth middleware
-- `src/auth/types.ts` - Type definitions
+## 過去に変更したファイル
+- `src/auth/login.ts` - ログイン処理
+- `src/auth/middleware.ts` - 認証ミドルウェア
+- `src/auth/types.ts` - 型定義
 
-## Key Implementation Points
-- JWT token generation and validation
-- Refresh token implementation
-- Session expiration management
+## 主な実装ポイント
+- JWT トークンの生成と検証
+- リフレッシュトークンの実装
+- セッション有効期限の管理
 
-## Notes
-- Token expiration set via environment variable
-- Refresh token stored in HTTPOnly Cookie
+## 注意点
+- トークンの有効期限は環境変数で設定
+- リフレッシュトークンはHTTPOnly Cookieに保存
 
 ---
-💡 Continuing work with this context
+💡 このコンテキストを踏まえて作業を継続します
 ```
 
-## Command Integration
+## コマンドへの組み込み
 
-### Integration with search-related-docs
+### search-related-docs との連携
 
 ```markdown
-## Flow When Related Documents Found
+## 関連ドキュメント発見時のフロー
 
-1. `search-related-docs` searches for related documents
-2. If user selects reference:
-   - `load-doc-context` loads context
-   - Display summary
-3. Continue work with context
+1. `search-related-docs` で関連ドキュメントを検索
+2. ユーザーが参照を選択した場合：
+   - `load-doc-context` でコンテキストを読み込み
+   - サマリーを表示
+3. コンテキストを踏まえて作業を継続
 ```
 
-### Usage in create-doc
+### create-doc での活用
 
 ```markdown
-## Reference During New Creation
+## 新規作成時の参照
 
-When related document loaded as context:
+関連ドキュメントをコンテキストとして読み込んだ場合：
 
-1. Check consistency with past implementation
-2. Consider append format if changes to same file
-3. Maintain consistency in technical decisions
-4. Inherit notes and constraints
+1. 過去の実装内容との整合性を確認
+2. 同じファイルへの変更があれば追記形式を検討
+3. 技術的な判断の一貫性を維持
+4. 注意点・制約を引き継ぎ
 ```
 
-### Usage in update-doc
+### update-doc での活用
 
 ```markdown
-## Diff Detection During Update
+## 更新時の差分検出
 
-Load existing document:
+既存ドキュメントを読み込み：
 
-1. Extract documented files from "Changed Files" section
-2. Compare with current changed files
-3. Identify only undocumented files as append targets
+1. 「変更したファイル」セクションから記載済みファイルを抽出
+2. 現在の変更ファイルと比較
+3. 未記載のファイルのみを追記対象として特定
 ```
 
-## Loading Options
+## 読み込みオプション
 
-| Option | Description | Default |
-|--------|-------------|---------|
-| full | Load all sections | false |
-| summary_only | Summary only | false |
-| files_only | Changed files only | false |
-| exclude_security | Exclude security items | false |
+| オプション | 説明 | デフォルト |
+|------------|------|------------|
+| full | 全セクションを読み込み | false |
+| summary_only | 概要のみ | false |
+| files_only | 変更ファイルのみ | false |
+| exclude_security | セキュリティ項目を除外 | false |
 
-## Error Handling
+## エラーハンドリング
 
-### Document Not Found
+### ドキュメントが見つからない場合
 
 ```markdown
-⚠️ Specified document not found: feature-xxx
+⚠️ 指定されたドキュメントが見つかりません: feature-xxx
 
-Please verify:
-- Directory name is correct
-- Exists under `.claude/custom-documents/`
+以下を確認してください：
+- ディレクトリ名が正しいか
+- `.claude/custom-documents/` 配下に存在するか
 ```
 
-### Loading Error
+### 読み込みエラーの場合
 
 ```markdown
-⚠️ Failed to load document: feature-auth-login
+⚠️ ドキュメントの読み込みに失敗しました: feature-auth-login
 
-Cause: File may be empty or corrupted
-Action: Please check the directory contents
+原因: ファイルが空または破損している可能性があります
+対処: 該当ディレクトリの内容を確認してください
 ```
 
-## Notes
+## 注意事項
 
-- HTML files are not loaded (Markdown only)
-- Large documents (>1000 lines) are summarized before loading
-- Multiple files are merged and processed
-- Loaded context is valid only within session
+- HTMLファイルは読み込み対象外（Markdownのみ）
+- 大きなドキュメント（1000行超）は要約して読み込み
+- 複数ファイルがある場合は統合して処理
+- 読み込んだコンテキストはセッション内でのみ有効

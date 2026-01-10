@@ -1,8 +1,8 @@
 # Custom Document Skills
 
-Skill definitions for the custom document plugin.
+カスタムドキュメントプラグインのスキル定義ディレクトリ
 
-## Directory Structure
+## ディレクトリ構造
 
 ```
 skills/
@@ -11,82 +11,82 @@ skills/
 │   └── SKILL.md
 ├── load-doc-context/
 │   └── SKILL.md
-└── doc-to-html/
+├── doc-to-html/
 │   └── SKILL.md
 ├── example-doc.md
 └── example-doc.html
 ```
 
-## Skills Overview
+## スキル一覧
 
-### search-related-docs (Internal Skill)
+### search-related-docs（内部スキル）
 
-Skill for searching and identifying related documents during command execution.
+コマンド実行時に関連ドキュメントを検索・特定するスキル。
 
-**Triggers:** `/create-doc`, `/update-doc`, `/create-investigate-doc`, `/update-investigate-doc`
+**使用コマンド:** `/create-doc`, `/update-doc`, `/create-investigate-doc`, `/update-investigate-doc`
 
-**Features:**
-- Compare git status changed files against existing documents
-- Relevance scoring (file match, directory match, keyword match)
-- Present highly relevant documents as candidates
-- Request user confirmation
+**機能:**
+- `git status` の変更ファイルと既存ドキュメントを照合
+- 関連度スコアリング（ファイル一致、ディレクトリ一致、キーワード一致）
+- 高関連度のドキュメントを候補として提示
+- ユーザーに確認を求める
 
-### load-doc-context (Internal Skill)
+### load-doc-context（内部スキル）
 
-Skill for loading documents and incorporating them as session context.
+ドキュメントを読み込んでコンテキストとして取り込むスキル。
 
-**Triggers:** `/create-doc`, `/update-doc`, `/create-investigate-doc`, `/update-investigate-doc`
+**使用コマンド:** `/create-doc`, `/update-doc`, `/create-investigate-doc`, `/update-investigate-doc`
 
-**Features:**
-- Parse and structure document content
-- Extract documented file list
-- Generate context summary
-- Diff detection (for update-doc, update-investigate-doc)
+**機能:**
+- ドキュメント内容を構造化して解析
+- 記載済みファイル一覧を抽出
+- コンテキストサマリーを生成
+- 差分検出（update-doc, update-investigate-doc 用）
 
 ---
 
-### doc-to-html (User-Invocable Skill)
+### doc-to-html（ユーザー呼び出し可能）
 
-Skill for converting markdown documents to readable HTML.
+マークダウンドキュメントを読みやすいHTMLに変換するスキル
 
-**Features:**
-- Floating table of contents (scroll tracking)
-- One-click file path copy
-- Toggle expand for detail sections
-- Dark mode design with calm colors
-- Responsive support
+**機能:**
+- フローティング目次（スクロール追随）
+- ファイルパスのワンクリックコピー
+- 詳細セクションのトグル展開
+- 落ち着いた色合いのダークモードデザイン
+- レスポンシブ対応
 
-**Usage:**
+**使用方法:**
 
 ```bash
-# Convert single file
+# 単一ファイルを変換
 python plugins/custom-doc/scripts/markdown-to-html.py path/to/document.md
 
-# Convert all markdown in directory
+# ディレクトリ内の全マークダウンを変換
 python plugins/custom-doc/scripts/markdown-to-html.py path/to/directory/
 ```
 
-**Generated HTML:**
+**生成されるHTML:**
 
-- Floating TOC on left side
-- Main content area with sufficient width
-- Code blocks with file path display and copy button
-- Collapsible technical details
-- Dark gray base calm design
+- 左側にフローティング目次
+- メインコンテンツエリアは十分な幅を確保
+- コードブロックにはファイルパス表示とコピーボタン
+- 技術的詳細は折りたたみ可能
+- ダークグレー基調の落ち着いたデザイン
 
-## Sample
+## サンプル
 
-`example-doc.md` and `example-doc.html` are provided as samples.
+`example-doc.md` と `example-doc.html` がサンプルとして用意されています。
 
-Open the HTML in a browser to check the features:
+HTMLをブラウザで開いて機能を確認できます：
 
 ```bash
 open plugins/custom-doc/skills/example-doc.html
 ```
 
-## Adding New Skills
+## スキルの追加方法
 
-To add a new skill, create a directory with `SKILL.md` file:
+新しいスキルを追加する場合は、ディレクトリを作成して `SKILL.md` ファイルを配置してください：
 
 ```
 skills/
@@ -94,34 +94,34 @@ skills/
     └── SKILL.md
 ```
 
-SKILL.md format:
+SKILL.md のフォーマット：
 
 ```markdown
 ---
 name: skill-name
-description: Skill description (used for auto-invocation matching)
+description: スキルの説明（自動呼び出しのマッチングに使用）
 allowed-tools:
   - Read
   - Write
   - Bash(specific:*)
-user-invocable: false  # true if can be invoked by user
+user-invocable: false  # ユーザーが直接呼び出せる場合は true
 ---
 
-# Skill Name
+# スキル名
 
-Detailed skill description...
+スキルの詳細な説明...
 ```
 
-## Official Frontmatter Fields
+## 公式フロントマターフィールド
 
-| Field | Description |
-|-------|-------------|
-| name | Skill name |
-| description | Description (used for auto-invocation matching) |
-| allowed-tools | Tools the skill can use |
-| model | Model to use (optional) |
-| context | Context files to include (optional) |
-| agent | Agent configuration (optional) |
-| hooks | Pre/post execution hooks (optional) |
-| user-invocable | Whether user can invoke directly (default: false) |
-| disable-model-invocation | Prevent model from auto-invoking (optional) |
+| フィールド | 説明 |
+|------------|------|
+| name | スキル名 |
+| description | 説明（自動呼び出しのマッチングに使用） |
+| allowed-tools | スキルが使用できるツール |
+| model | 使用するモデル（オプション） |
+| context | 含めるコンテキストファイル（オプション） |
+| agent | エージェント設定（オプション） |
+| hooks | 実行前後のフック（オプション） |
+| user-invocable | ユーザーが直接呼び出せるか（デフォルト: false） |
+| disable-model-invocation | モデルによる自動呼び出しを無効化（オプション） |

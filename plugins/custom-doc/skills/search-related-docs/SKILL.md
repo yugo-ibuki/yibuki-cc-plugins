@@ -1,6 +1,6 @@
 ---
 name: search-related-docs
-description: Search and identify related documents to complement context during command execution. Triggers on /create-doc, /update-doc, /create-investigate-doc, /update-investigate-doc. Uses git status to detect changed files and matches against existing documents in .claude/custom-documents/.
+description: コマンド実行時に関連ドキュメントを検索・特定するスキル。/create-doc, /update-doc, /create-investigate-doc, /update-investigate-doc で使用。git status で変更ファイルを検出し、.claude/custom-documents/ 内の既存ドキュメントと照合する。
 allowed-tools:
   - Read
   - Glob
@@ -8,20 +8,20 @@ allowed-tools:
   - Bash(git diff:*)
 ---
 
-# search-related-docs Skill
+# search-related-docs スキル
 
-Internal skill for searching and identifying related documents during command execution.
+コマンド実行時に関連するドキュメントを検索し、コンテキストを補完するための内部スキル。
 
-## Purpose
+## 目的
 
-When executing `/create-doc` or `/update-doc`:
-1. Automatically search for related documents
-2. Present highly relevant documents as candidates
-3. Request user confirmation when needed
+`/create-doc` や `/update-doc` 実行時に：
+1. 現在の作業に関連するドキュメントを自動検索
+2. 関連度の高いドキュメントを提示
+3. 必要に応じてユーザーに確認を求める
 
-## Search Logic
+## 検索ロジック
 
-### Search Target
+### 検索対象
 ```
 .claude/custom-documents/
 ├── feature-auth-login/
@@ -29,92 +29,92 @@ When executing `/create-doc` or `/update-doc`:
 └── ...
 ```
 
-### Relevance Scoring Criteria
+### 関連度判定の基準
 
-| Factor | Weight | Description |
-|--------|--------|-------------|
-| File match | High | Documents that modified the same files |
-| Directory match | High | Documents handling files in the same directory |
-| Keyword match | Medium | Same keywords in summary or implementation |
-| Tech stack match | Medium | Same technologies or libraries used |
-| Temporal proximity | Low | Recently updated documents |
+| 判定要素 | 重み | 説明 |
+|----------|------|------|
+| 変更ファイルの一致 | 高 | 同じファイルを過去に変更したドキュメント |
+| ディレクトリの一致 | 高 | 同じディレクトリ配下のファイルを扱うドキュメント |
+| キーワードの一致 | 中 | 概要や実装内容に同じキーワードが含まれる |
+| 技術スタックの一致 | 中 | 同じ技術やライブラリを使用 |
+| 時間的近接性 | 低 | 最近更新されたドキュメント |
 
-### Search Flow
+### 検索フロー
 
 ```
-1. Get current changed files from git status/diff
-2. Compare with "Changed Files" section in each document
-3. Calculate relevance score
-4. Sort by score
-5. Return documents above threshold as candidates
+1. git status/diff から現在の変更ファイル一覧を取得
+2. 各ドキュメントの「変更したファイル」セクションと照合
+3. 関連度スコアを計算
+4. スコアの高い順にソート
+5. 閾値以上のドキュメントを候補として返す
 ```
 
-## Usage (Internal Command Call)
+## 使用方法（コマンド内での呼び出し）
 
-### Basic Search
+### 基本的な検索
 
 ```markdown
-## Related Document Search
+## 関連ドキュメント検索
 
-Search for related documents with the following steps:
+以下の手順で関連ドキュメントを検索：
 
-1. Scan all directories in `.claude/custom-documents/`
-2. Parse each document's content
-3. Calculate relevance to current changed files
-4. List highly relevant documents
+1. `.claude/custom-documents/` 内の全ディレクトリを走査
+2. 各ドキュメントの内容を解析
+3. 現在の変更ファイルとの関連度を計算
+4. 関連度の高いドキュメントをリストアップ
 ```
 
-### Result Presentation Format
+### 検索結果の提示形式
 
 ```markdown
-📚 Potentially related documents found:
+📚 関連する可能性のあるドキュメントが見つかりました：
 
-1. **feature-auth-login** (Relevance: High)
-   - Matches: `src/auth/login.ts`, `src/auth/middleware.ts`
-   - Summary: Login feature implementation
+1. **feature-auth-login** (関連度: 高)
+   - 一致: `src/auth/login.ts`, `src/auth/middleware.ts`
+   - 概要: ログイン機能の実装
 
-2. **api-auth-system** (Relevance: Medium)
-   - Matches: `src/auth/` directory
-   - Summary: Authentication API design
+2. **api-auth-system** (関連度: 中)
+   - 一致: `src/auth/` ディレクトリ
+   - 概要: 認証APIの設計
 
-Would you like to reference these documents?
-- (y) Yes, load as context
-- (n) No, create as new document
-- (1-2) Select specific document only
+これらのドキュメントを参照しますか？
+- (y) はい、コンテキストとして読み込む
+- (n) いいえ、新規ドキュメントとして作成
+- (1-2) 特定のドキュメントのみ選択
 ```
 
-## Command Integration Examples
+## コマンドへの組み込み例
 
-### Usage in create-doc
+### create-doc での使用
 
 ```markdown
-## Pre-creation Check
+## ドキュメント作成前の確認
 
-Before document creation, reference `skills/search-related-docs`:
+ドキュメント作成前に `skills/search-related-docs` を参照し：
 
-1. Search for related documents
-2. If highly relevant documents found, ask for confirmation
-3. Based on user selection:
-   - Update existing document → redirect to /update-doc
-   - Continue with new creation
-   - Create new with existing document as context reference
+1. 関連ドキュメントを検索
+2. 高関連度のドキュメントがあれば確認を求める
+3. ユーザーの選択に応じて：
+   - 既存ドキュメントを更新 → /update-doc にリダイレクト
+   - 新規作成を継続
+   - 既存ドキュメントをコンテキストとして参照しながら新規作成
 ```
 
-### Usage in update-doc
+### update-doc での使用
 
 ```markdown
-## Target Identification
+## 更新対象の特定
 
-Use `skills/search-related-docs` to:
+`skills/search-related-docs` を使用して：
 
-1. Identify most relevant document to current changes
-2. If multiple candidates, ask for selection
-3. Show warning if relevance is low
+1. 現在の変更に最も関連するドキュメントを特定
+2. 複数候補がある場合は選択を求める
+3. 関連度が低い場合は警告を表示
 ```
 
-## Output Format
+## 出力フォーマット
 
-### Search Result Object (Internal)
+### 検索結果オブジェクト（内部用）
 
 ```yaml
 results:
@@ -124,7 +124,7 @@ results:
     matched_files:
       - "src/auth/login.ts"
       - "src/auth/middleware.ts"
-    summary: "Login feature implementation"
+    summary: "ログイン機能の実装"
     last_updated: "2024-11-20"
 
   - name: "api-auth-system"
@@ -132,13 +132,13 @@ results:
     relevance: medium
     matched_files: []
     matched_directory: "src/auth/"
-    summary: "Authentication API design"
+    summary: "認証APIの設計"
     last_updated: "2024-11-15"
 ```
 
-## Notes
+## 注意事項
 
-- Search targets Markdown files only
-- Case-insensitive matching
-- Partial match search (exact match not required)
-- Limit to top 5 results if too many matches
+- 検索はMarkdownファイルのみを対象
+- 大文字小文字は区別しない
+- 部分一致で検索（完全一致は不要）
+- 検索結果が多すぎる場合は上位5件に制限

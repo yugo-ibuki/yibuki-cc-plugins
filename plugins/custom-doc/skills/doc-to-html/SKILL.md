@@ -1,6 +1,6 @@
 ---
 name: doc-to-html
-description: Convert markdown documents to readable HTML with floating TOC, copy functionality, and toggle sections. Post-processing skill for /create-doc, /update-doc, /create-investigate-doc, /update-investigate-doc. Requires python3 and scripts/markdown-to-html.py.
+description: マークダウンドキュメントをフローティング目次・コピー機能・トグルセクション付きの読みやすいHTMLに変換するスキル。/create-doc, /update-doc, /create-investigate-doc, /update-investigate-doc の後処理として使用。python3 と scripts/markdown-to-html.py が必要。
 allowed-tools:
   - Read
   - Write
@@ -8,45 +8,45 @@ allowed-tools:
 user-invocable: true
 ---
 
-# doc-to-html Skill
+# ドキュメントHTML化スキル
 
-Convert markdown documents to readable HTML with table of contents, copy functionality, and toggle sections.
+マークダウン形式のドキュメントを、目次・コピー機能・トグル展開機能を備えた読みやすいHTMLに変換します。
 
-## Features
+## 機能
 
-### 1. Floating Table of Contents
-- Fixed position on left side
-- Follows scroll
-- Click to jump to section
-- Highlight current position
+### 1. フローティング目次
+- 左側に固定配置
+- スクロールに追随
+- クリックで該当セクションにジャンプ
+- 現在位置のハイライト
 
-### 2. File Path Display
-- Display file path on code blocks
-- Click to copy path to clipboard
-- Visual feedback on copy success
+### 2. ファイルパス表示
+- コードブロックにファイルパスを表示
+- クリックでパスをクリップボードにコピー
+- コピー成功時の視覚フィードバック
 
-### 3. Toggle by Importance
-- Collapsible detail information
-- Summary and implementation always visible
-- Technical background and references expandable
+### 3. 重要度別トグル
+- 詳細情報は折りたたみ可能
+- 概要・実装内容は常時表示
+- 技術的背景・参考資料は展開式
 
-### 4. Design
-- Calm colors (dark gray base)
-- Readable font size and line height
-- Appropriate contrast ratio
-- Responsive support
+### 4. デザイン
+- 落ち着いた色合い（ダークグレー基調）
+- 読みやすいフォントサイズと行間
+- 適切なコントラスト比
+- レスポンシブ対応
 
-## Usage
+## 使用方法
 
 ```bash
-# Convert specific markdown file to HTML
+# マークダウンファイルを指定してHTML化
 /doc-to-html path/to/document.md
 
-# Convert all documents in directory to HTML
+# ディレクトリ内の全ドキュメントをHTML化
 /doc-to-html path/to/directory/
 ```
 
-## Generated HTML Structure
+## 生成されるHTML構造
 
 ```html
 <!DOCTYPE html>
@@ -54,47 +54,47 @@ Convert markdown documents to readable HTML with table of contents, copy functio
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>[Document Name]</title>
+    <title>[ドキュメント名]</title>
     <style>
-        /* Stylesheet */
+        /* スタイルシート */
     </style>
 </head>
 <body>
     <nav class="toc">
-        <!-- Table of Contents -->
+        <!-- 目次 -->
     </nav>
     <main class="content">
-        <!-- Main Content -->
+        <!-- メインコンテンツ -->
     </main>
     <script>
-        /* Interaction Scripts */
+        /* インタラクション用スクリプト */
     </script>
 </body>
 </html>
 ```
 
-## Markdown to HTML Conversion Rules
+## マークダウンからHTMLへの変換ルール
 
-### Always Visible Sections
-- Summary
-- Changed Files
-- Implementation
+### 常時表示セクション
+- 概要
+- 変更したファイル
+- 実装内容
 
-### Toggle Sections (Collapsed by Default)
-- Technical Background
-- Technical Decisions
-- Security Aspects
-- Notes/Constraints
-- Related Resources
+### トグル展開セクション（デフォルト折りたたみ）
+- 技術的な背景・解説
+- 技術的な判断・設計決定
+- セキュリティ観点
+- 注意点・制約
+- 関連知識・参考資料
 
-## Output Destination
+## 出力先
 
-Generated HTML is saved as `[filename].html` in the same directory as the original markdown file.
+生成されたHTMLは元のマークダウンファイルと同じディレクトリに `[filename].html` として保存されます。
 
-Example:
+例：
 - `task-implementation.md` → `task-implementation.html`
 
-## CSS Variables
+## CSS変数
 
 ```css
 :root {
@@ -111,16 +111,17 @@ Example:
 }
 ```
 
-## JavaScript Features
+## JavaScript機能
 
-- TOC active state tracking on scroll
-- Smooth scroll navigation
-- File path copy to clipboard
-- Toggle section expand/collapse
-- Mobile menu support
+- 目次のアクティブ状態更新（スクロール追随）
+- スムーススクロールナビゲーション
+- ファイルパスのクリップボードコピー
+- トグルセクションの展開・折りたたみ
+- モバイルメニュー対応
 
-## Customization
+## カスタマイズ
 
-To customize HTML design or styles, edit:
-- `scripts/markdown-to-html.py` - HTML template and CSS definitions
-- `skills/doc-to-html/SKILL.md` - Skill documentation
+HTMLのデザインやスタイルをカスタマイズしたい場合は、以下のファイルを編集してください：
+
+- `scripts/markdown-to-html.py` - HTMLテンプレートとCSS定義
+- `skills/doc-to-html/SKILL.md` - スキルのドキュメント
