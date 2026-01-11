@@ -1,9 +1,16 @@
 {
   "name": "project-onboarding",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "プロジェクト参加者向けのオンボーディング支援。プロジェクト構造の把握やタスク関連ファイルの検索を行う",
   "author": {
     "name": "yugo-ibuki"
   },
-  "keywords": ["onboarding", "project", "exploration", "navigation", "newbie"]
+  "keywords": ["onboarding", "project", "exploration", "navigation", "newbie", "agent"],
+  "agents": [
+    {
+      "name": "project-onboarding",
+      "description": "プロジェクト構造探索・関連ファイル検索・import解析を行うsubagent",
+      "path": "./agents/project-onboarding/AGENT.md"
+    }
+  ]
 }
