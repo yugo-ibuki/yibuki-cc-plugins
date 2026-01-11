@@ -27,15 +27,33 @@
       "name": "project-onboarding-plugin",
       "source": "./plugins/project-onboarding",
       "description": "プロジェクト参加者向けのオンボーディング支援。プロジェクト構造の把握やタスク関連ファイルの検索",
+      "version": "1.0.0",
+      "author": {
+        "name": "yugo-ibuki"
+      }
     },
+    {
       "name": "pr-review-comment-plugin",
       "source": "./plugins/pr-review-comment",
       "description": "PRの変更点をまとめるコメントを作成します",
+      "version": "1.0.0",
+      "author": {
+        "name": "yugo-ibuki"
+      }
     },
     {
       "name": "unused-imports-hook-plugin",
       "source": "./plugins/unused-imports-hook",
       "description": "コミット前に未使用のimportを自動削除するフック",
+      "version": "1.0.0",
+      "author": {
+        "name": "yugo-ibuki"
+      }
+    },
+    {
+      "name": "lang-learner-plugin",
+      "source": "./plugins/lang-learner",
+      "description": "新しいプログラミング言語を学ぶ際に、公式ドキュメントから重要な概念を抽出し、他言語との比較も含めて解説",
       "version": "1.0.0",
       "author": {
         "name": "yugo-ibuki"

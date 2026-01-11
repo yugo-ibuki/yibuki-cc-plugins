@@ -1,0 +1,9 @@
+{
+  "name": "lang-learner-plugin",
+  "version": "1.0.0",
+  "description": "新しいプログラミング言語を学ぶ際に、公式ドキュメントから重要な概念を抽出して説明してくれるプラグイン",
+  "author": {
+    "name": "yugo-ibuki"
+  },
+  "keywords": ["learning", "language", "documentation", "concepts", "education", "programming"]
+}
