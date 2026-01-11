@@ -51,9 +51,9 @@
       }
     },
     {
-      "name": "task-splitter-plugin",
-      "source": "./plugins/task-splitter",
-      "description": "タスクを並列実行可能なサブタスクに分割し、関連ファイルを紐付ける",
+      "name": "lang-learner-plugin",
+      "source": "./plugins/lang-learner",
+      "description": "新しいプログラミング言語を学ぶ際に、公式ドキュメントから重要な概念を抽出し、他言語との比較も含めて解説",
       "version": "1.0.0",
       "author": {
         "name": "yugo-ibuki"
