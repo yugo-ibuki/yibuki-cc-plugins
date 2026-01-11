@@ -75,11 +75,9 @@ documentation:
 | Rust | doc.rust-lang.org | ✅ /rust-lang/rust |
 | Go | go.dev/doc | ✅ /golang/go |
 | TypeScript | typescriptlang.org/docs | ✅ /microsoft/typescript |
+| JavaScript | developer.mozilla.org | ✅ /mdn/content |
 | Python | docs.python.org | ✅ /python/cpython |
-| Kotlin | kotlinlang.org/docs | ✅ /jetbrains/kotlin |
-| Swift | swift.org/documentation | ✅ /apple/swift |
-| Java | docs.oracle.com/en/java | ⚠️ 部分的 |
-| C++ | cppreference.com | ⚠️ 部分的 |
+| PHP | php.net/manual | ✅ /php/doc-en |
 
 ### WebSearchクエリパターン
 
@@ -90,7 +88,8 @@ documentation:
 # 具体例
 "rust ownership official documentation"
 "go goroutine tutorial site:go.dev"
-"kotlin coroutine guide site:kotlinlang.org"
+"typescript generics guide site:typescriptlang.org"
+"php fibers tutorial site:php.net"
 
 # 比較用
 "[言語1] vs [言語2] [トピック]"

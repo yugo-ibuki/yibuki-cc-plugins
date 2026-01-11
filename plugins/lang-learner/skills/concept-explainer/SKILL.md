@@ -67,42 +67,61 @@ cross_language_mapping:
       javascript: "async/await + Promise"
       typescript: "async/await + Promise（型付き）"
       python: "asyncio / threading"
-      java: "Thread / ExecutorService / Virtual Threads"
-      kotlin: "Coroutine"
+      php: "Fibers (8.1+) / ReactPHP"
 
     channel:
       javascript: "なし（Promise/Observableで代用）"
       typescript: "なし（RxJS Observable/Subject で代用）"
       python: "queue.Queue / asyncio.Queue"
-      java: "BlockingQueue"
+      php: "なし（メッセージキューで代用）"
 
     interface:
       javascript: "なし（ダックタイピング）"
       typescript: "interface / type（構造的型付け）"
-      java: "interface（名目的型付け）"
-      kotlin: "interface（名目的型付け）"
+      go: "interface（暗黙的実装）"
+      php: "interface（明示的実装）"
 
   typescript:
     type_system:
       javascript: "なし（動的型付け）"
       python: "型ヒント（実行時チェックなし）"
-      java: "静的型付け（名目的）"
       go: "静的型付け（構造的）"
+      php: "型宣言（7.0+、段階的型付け）"
       rust: "静的型付け（所有権システム統合）"
 
     generics:
       javascript: "なし"
       python: "typing.Generic（型ヒントのみ）"
-      java: "Generics（型消去あり）"
       go: "Generics (1.18+)"
+      php: "なし（PHPStan/Psalm でDocBlockベース）"
       rust: "Generics + トレイト境界"
 
     union_types:
       javascript: "なし（実行時にany）"
       python: "Union型（型ヒントのみ）"
-      java: "sealed classes (17+)"
+      php: "Union型 (8.0+)"
       rust: "enum（代数的データ型）"
-      kotlin: "sealed class"
+      go: "なし（interface{}で代用）"
+
+  php:
+    type_declarations:
+      javascript: "なし"
+      typescript: "完全な型システム"
+      python: "型ヒント（似た段階的導入）"
+      go: "静的型付け（必須）"
+
+    namespaces:
+      javascript: "ES Modules"
+      typescript: "ES Modules + namespace"
+      python: "パッケージ/モジュール"
+      go: "package"
+
+    traits:
+      javascript: "なし（Mixin パターン）"
+      typescript: "なし（Mixin パターン）"
+      python: "多重継承"
+      go: "埋め込み（embedding）"
+      rust: "trait（異なる概念）"
 ```
 
 ### Phase 3: 解説生成
@@ -155,11 +174,11 @@ cross_language_mapping:
 |------|------|------|
 | Rust | 所有権システム | コンパイル時にメモリ安全性を保証 |
 | C++ | 手動 + スマートポインタ | 柔軟だが責任はプログラマ |
-| Go | GC | シンプルだがSTW発生 |
-| Java | GC | 成熟したGC、複数アルゴリズム |
+| Go | GC | シンプル、低レイテンシGC |
 | TypeScript | GC (V8) | JavaScriptと同様、V8エンジンが管理 |
 | JavaScript | GC | イベントループとの統合 |
 | Python | 参照カウント + GC | 循環参照対策あり |
+| PHP | 参照カウント + GC | リクエスト終了時に解放 |
 
 ### 並行処理の比較
 
@@ -170,8 +189,7 @@ cross_language_mapping:
 | TypeScript | async/await + Promise | 型付きPromise、シングルスレッド |
 | JavaScript | async/await + Promise | シングルスレッド、イベントループ |
 | Python | asyncio / threading | GILの制約あり |
-| Kotlin | Coroutine | 構造化並行性 |
-| Java | Virtual Threads (21+) | 軽量スレッド |
+| PHP | Fibers (8.1+) / ReactPHP | 従来は同期的、非同期は後発 |
 
 ### エラーハンドリングの比較
 
@@ -180,9 +198,9 @@ cross_language_mapping:
 | Rust | Result<T, E> + ? | 型安全、明示的 |
 | Go | error返り値 | シンプル、if err != nil |
 | TypeScript | try-catch + union types | 例外 + 型による安全性 |
-| Java | checked/unchecked exceptions | 例外中心 |
-| Swift | Result + throws | オプショナルとの統合 |
-| Kotlin | 例外 + runCatching | Javaとの互換性 |
+| JavaScript | try-catch + Promise.catch | 例外 + Promiseエラー |
+| Python | try-except | 例外中心、詳細なトレースバック |
+| PHP | try-catch + Throwable | 例外中心、Error/Exception階層 |
 
 ## 出力テンプレート
 

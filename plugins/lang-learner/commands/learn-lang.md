@@ -37,7 +37,7 @@ argument-hint: <言語名> [トピック] [--compare <比較言語1,言語2,...>
 
 | 引数 | 説明 | 例 |
 |------|------|-----|
-| 言語名 | 学習したい言語 | `rust`, `go`, `kotlin` |
+| 言語名 | 学習したい言語 | `rust`, `go`, `typescript`, `php` |
 | トピック | 特定のトピック（任意） | `ownership`, `goroutine`, `coroutine` |
 | --compare | 比較対象の言語（カンマ区切り） | `javascript,python` |
 
@@ -141,14 +141,14 @@ argument-hint: <言語名> [トピック] [--compare <比較言語1,言語2,...>
 ### 他言語との比較付き
 
 ```
-/learn-lang kotlin coroutine --compare javascript,python
+/learn-lang go goroutine --compare typescript,python
 ```
-→ KotlinのCoroutineをJavaScript (async/await) とPython (asyncio) と比較
+→ Goのgoroutineを TypeScript (async/await) と Python (asyncio) と比較
 
 ### 複数の比較言語
 
 ```
-/learn-lang rust error-handling --compare go,java,typescript
+/learn-lang rust error-handling --compare go,typescript,php
 ```
 → Rustのエラーハンドリングを複数言語と比較
 
@@ -158,10 +158,10 @@ argument-hint: <言語名> [トピック] [--compare <比較言語1,言語2,...>
 |------|---------------|--------------|
 | Rust | /rust-lang/rust | ownership, borrowing, lifetime, traits |
 | Go | /golang/go | goroutine, channel, interface, error-handling |
-| Kotlin | /jetbrains/kotlin | coroutine, null-safety, extension-functions |
-| TypeScript | /microsoft/typescript | type-system, generics, decorators |
+| TypeScript | /microsoft/typescript | type-system, generics, decorators, utility-types |
+| JavaScript | /mdn/content | async, modules, prototypes |
 | Python | /python/cpython | async, type-hints, decorators |
-| Swift | /apple/swift | optionals, protocols, memory-management |
+| PHP | /php/doc-en | namespaces, traits, type-declarations, fibers |
 
 ## 比較対象言語のデフォルト
 
@@ -169,12 +169,12 @@ argument-hint: <言語名> [トピック] [--compare <比較言語1,言語2,...>
 
 1. **ユーザーのコードベースから推測**（package.json, go.mod, Cargo.toml等を確認）
 2. **一般的な組み合わせ**：
-   - Rust → TypeScript, JavaScript, Python, C++
-   - Go → TypeScript, Python, Java
-   - Kotlin → Java, TypeScript, Swift
-   - Swift → Kotlin, TypeScript, Objective-C
-   - TypeScript → JavaScript, Python, Java
-   - Python → TypeScript, JavaScript, Java
+   - Rust → TypeScript, Go, Python
+   - Go → TypeScript, Python, PHP
+   - TypeScript → JavaScript, Go, Python
+   - JavaScript → TypeScript, Python, PHP
+   - Python → TypeScript, Go, PHP
+   - PHP → TypeScript, Python, Go
 
 ## 注意事項
 
