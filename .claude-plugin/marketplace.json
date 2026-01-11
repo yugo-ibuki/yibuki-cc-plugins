@@ -26,11 +26,12 @@
     {
       "name": "project-onboarding-plugin",
       "source": "./plugins/project-onboarding",
-      "description": "プロジェクト参加者向けのオンボーディング支援。プロジェクト構造の把握やタスク関連ファイルの検索",
+      "description": "プロジェクト参加者向けのオンボーディング支援。プロジェクト構造の把握やタスク関連ファイルの検索"
     },
+    {
       "name": "pr-review-comment-plugin",
       "source": "./plugins/pr-review-comment",
-      "description": "PRの変更点をまとめるコメントを作成します",
+      "description": "PRの変更点をまとめるコメントを作成します"
     },
     {
       "name": "unused-imports-hook-plugin",
