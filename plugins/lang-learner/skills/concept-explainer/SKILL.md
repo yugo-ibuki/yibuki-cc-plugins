@@ -46,26 +46,63 @@ cross_language_mapping:
   rust:
     ownership:
       javascript: "参照とガベージコレクション（GC任せ）"
+      typescript: "JavaScriptと同様、GC任せ（型システムでは管理しない）"
       python: "参照カウント + GC"
       cpp: "スマートポインタ (unique_ptr, shared_ptr)"
       go: "GC（所有権概念なし）"
 
     borrowing:
       javascript: "なし（すべて参照コピー）"
+      typescript: "readonly修飾子で部分的に制限可能"
       python: "なし（オブジェクト参照のみ）"
       cpp: "参照（&）とconst参照"
+
+    lifetime:
+      javascript: "なし（GCが管理）"
+      typescript: "なし（GCが管理、型レベルでの表現なし）"
+      cpp: "RAII、スコープベース"
 
   go:
     goroutine:
       javascript: "async/await + Promise"
+      typescript: "async/await + Promise（型付き）"
       python: "asyncio / threading"
       java: "Thread / ExecutorService / Virtual Threads"
       kotlin: "Coroutine"
 
     channel:
       javascript: "なし（Promise/Observableで代用）"
+      typescript: "なし（RxJS Observable/Subject で代用）"
       python: "queue.Queue / asyncio.Queue"
       java: "BlockingQueue"
+
+    interface:
+      javascript: "なし（ダックタイピング）"
+      typescript: "interface / type（構造的型付け）"
+      java: "interface（名目的型付け）"
+      kotlin: "interface（名目的型付け）"
+
+  typescript:
+    type_system:
+      javascript: "なし（動的型付け）"
+      python: "型ヒント（実行時チェックなし）"
+      java: "静的型付け（名目的）"
+      go: "静的型付け（構造的）"
+      rust: "静的型付け（所有権システム統合）"
+
+    generics:
+      javascript: "なし"
+      python: "typing.Generic（型ヒントのみ）"
+      java: "Generics（型消去あり）"
+      go: "Generics (1.18+)"
+      rust: "Generics + トレイト境界"
+
+    union_types:
+      javascript: "なし（実行時にany）"
+      python: "Union型（型ヒントのみ）"
+      java: "sealed classes (17+)"
+      rust: "enum（代数的データ型）"
+      kotlin: "sealed class"
 ```
 
 ### Phase 3: 解説生成
@@ -120,6 +157,7 @@ cross_language_mapping:
 | C++ | 手動 + スマートポインタ | 柔軟だが責任はプログラマ |
 | Go | GC | シンプルだがSTW発生 |
 | Java | GC | 成熟したGC、複数アルゴリズム |
+| TypeScript | GC (V8) | JavaScriptと同様、V8エンジンが管理 |
 | JavaScript | GC | イベントループとの統合 |
 | Python | 参照カウント + GC | 循環参照対策あり |
 
@@ -129,6 +167,7 @@ cross_language_mapping:
 |------|----------|------|
 | Go | goroutine + channel | 軽量、CSPモデル |
 | Rust | async/await + tokio | ゼロコスト抽象化 |
+| TypeScript | async/await + Promise | 型付きPromise、シングルスレッド |
 | JavaScript | async/await + Promise | シングルスレッド、イベントループ |
 | Python | asyncio / threading | GILの制約あり |
 | Kotlin | Coroutine | 構造化並行性 |
@@ -186,12 +225,14 @@ fn main() {
 
 | 言語 | 対応する概念 | 違い |
 |------|-------------|------|
+| TypeScript | 参照コピー | 所有権なし、readonly修飾子で部分的に制限可能 |
 | JavaScript | 参照コピー | 所有権なし、GCが管理 |
 | Python | 参照カウント | オブジェクトは共有、GCが解放 |
 | C++ | unique_ptr | 似た概念だがより柔軟 |
 | Go | なし | GCが全自動で管理 |
 
 **💡 既知の言語から理解するコツ**
+- TypeScript経験者: `readonly`や`as const`で不変性を表現しますが、Rustの所有権は「誰がメモリを解放するか」を決める仕組みです。型システムだけでなくメモリ管理に直結します。
 - JavaScript経験者: `const obj = {...}` で代入すると参照がコピーされますが、Rustでは「所有権が移動」します。元の変数は使えなくなります。
 - C++経験者: `std::unique_ptr` の move semantics に近いですが、Rustではデフォルト動作です。
 
@@ -212,6 +253,7 @@ fn main() {
 - 学習曲線は急だが、習得後は強力なツール
 
 ### 他言語から移行する際のポイント
+- TypeScript: 型システムは似ているがメモリ管理は全く異なる。readonlyとは別物と理解する
 - JavaScript/Python: 「すべてがコピー/共有」という発想を捨てる
 - C++: スマートポインタの厳格版と考える
 - Go: GCがないぶん明示的な制御が必要

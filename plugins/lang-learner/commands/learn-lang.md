@@ -169,10 +169,12 @@ argument-hint: <言語名> [トピック] [--compare <比較言語1,言語2,...>
 
 1. **ユーザーのコードベースから推測**（package.json, go.mod, Cargo.toml等を確認）
 2. **一般的な組み合わせ**：
-   - Rust → JavaScript/TypeScript, Python, C++
-   - Go → Python, Java, JavaScript
-   - Kotlin → Java, Swift, TypeScript
+   - Rust → TypeScript, JavaScript, Python, C++
+   - Go → TypeScript, Python, Java
+   - Kotlin → Java, TypeScript, Swift
    - Swift → Kotlin, TypeScript, Objective-C
+   - TypeScript → JavaScript, Python, Java
+   - Python → TypeScript, JavaScript, Java
 
 ## 注意事項
 
