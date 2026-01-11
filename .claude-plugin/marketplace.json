@@ -49,6 +49,15 @@
       "author": {
         "name": "yugo-ibuki"
       }
+    },
+    {
+      "name": "task-splitter-plugin",
+      "source": "./plugins/task-splitter",
+      "description": "タスクを並列実行可能なサブタスクに分割し、関連ファイルを紐付ける",
+      "version": "1.0.0",
+      "author": {
+        "name": "yugo-ibuki"
+      }
     }
   ]
 }
