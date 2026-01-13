@@ -1,0 +1,22 @@
+{
+  "name": "pre-compact-doc-hook-plugin",
+  "version": "1.0.0",
+  "description": "セッションがcompactingされる前にカスタムドキュメントの作成/更新を促すフック",
+  "author": {
+    "name": "yugo-ibuki"
+  },
+  "keywords": ["hook", "compact", "document", "session", "context"],
+  "hooks": {
+    "PreCompact": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "${CLAUDE_PLUGIN_ROOT}/scripts/check-doc-before-compact.sh"
+          }
+        ]
+      }
+    ]
+  }
+}
