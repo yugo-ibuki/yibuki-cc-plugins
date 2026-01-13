@@ -1,7 +1,11 @@
 ---
 allowed-tools:
   - Task
-description: プロジェクト構造を探索し、新規参加者向けの概要を提供（subagent実行）
+  - Read
+  - Glob
+  - Grep
+  - Bash(ls:*)
+description: プロジェクト構造を探索し、新規参加者向けの概要を提供
 argument-hint:
 ---
 
@@ -11,60 +15,59 @@ argument-hint:
 
 ## 実行方法
 
-このコマンドは `project-onboarding` subagentを起動し、プロジェクト探索を実行します。
+このコマンドは `Explore` agentを使用してプロジェクト構造を探索します。
 コンテキストを節約するため、詳細な検索処理はsubagent内で完結します。
 
 ## Taskツールでの呼び出し
 
 ```
 Task tool:
-  subagent_type: "project-onboarding"
+  subagent_type: "Explore"
   description: "プロジェクト概要を取得"
   prompt: |
     このプロジェクトの概要を把握して、新規参加者向けにまとめてください。
 
-    以下を調査:
+    以下を調査（thoroughness: "very thorough"）:
     1. README.md, CLAUDE.md からプロジェクト説明を取得
-    2. package.json 等から技術スタックを特定
-    3. ディレクトリ構造を探索
+    2. package.json, pyproject.toml, Cargo.toml 等から技術スタックを特定
+    3. ディレクトリ構造を探索（src/, lib/, app/ 等）
     4. PROJECT_REFERENCES.md があれば用語集を取得
 
     結果を以下のフォーマットで出力:
-    - プロジェクト名・説明
-    - 技術スタック
-    - ディレクトリ構造と各ディレクトリの役割
-    - プロジェクト固有の用語（あれば）
-```
 
-## 出力フォーマット
+    ## プロジェクト概要
 
-subagentから返される結果:
+    | 項目 | 内容 |
+    |------|------|
+    | プロジェクト名 | {name} |
+    | 説明 | {description} |
+    | 技術スタック | {technologies} |
 
-```markdown
-# プロジェクトオンボーディング
+    ## ディレクトリ構造
 
-## 基本情報
+    ```
+    src/
+    ├── components/    # 役割説明
+    ├── services/      # 役割説明
+    └── utils/         # 役割説明
+    ```
 
-| 項目 | 内容 |
-|------|------|
-| プロジェクト名 | {name} |
-| 説明 | {description} |
-| 技術スタック | TypeScript, React, Node.js |
+    ## 主要ファイル
 
-## ディレクトリ構造
+    - `{path}` - {説明}
 
-src/
-├── components/    # UIコンポーネント
-├── services/      # ビジネスロジック
-└── utils/         # ユーティリティ
+    ## プロジェクト固有の用語（あれば）
 
-## 次のステップ
+    | 用語 | 意味 |
+    |------|------|
 
-- `/find-files <タスク名>` で関連ファイルを探す
+    ## 次のステップ
+
+    - `/find-files <キーワード>` で関連ファイルを探す
 ```
 
 ## メリット
 
 - **コンテキスト節約**: 検索処理の詳細がメインコンテキストに残らない
-- **高速**: 並列検索が可能
-- **再利用性**: 同じagentを `/find-files` でも使用
+- **高速**: Explore agentによる効率的な探索
+- **再利用性**: 同じパターンを `/find-files` でも使用
