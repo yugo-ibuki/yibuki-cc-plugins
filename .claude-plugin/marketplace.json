@@ -67,6 +67,15 @@
       "author": {
         "name": "yugo-ibuki"
       }
+    },
+    {
+      "name": "pre-compact-doc-hook-plugin",
+      "source": "./plugins/pre-compact-doc-hook",
+      "description": "セッションがcompactingされる前にカスタムドキュメントの作成/更新を促すフック",
+      "version": "1.0.0",
+      "author": {
+        "name": "yugo-ibuki"
+      }
     }
   ]
 }
