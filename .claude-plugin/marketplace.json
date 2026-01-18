@@ -76,6 +76,15 @@
       "author": {
         "name": "yugo-ibuki"
       }
+    },
+    {
+      "name": "oauth2-authentication-plugin",
+      "source": "./plugins/oauth2-authentication",
+      "description": "OAuth2認証とOpenID Connectの包括的な実装ガイド。認証フロー、トークン管理、セキュリティベストプラクティスを提供",
+      "version": "1.0.0",
+      "author": {
+        "name": "yugo-ibuki"
+      }
     }
   ]
 }
