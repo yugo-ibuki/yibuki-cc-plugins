@@ -347,6 +347,68 @@ app.use(helmet({
 }));
 ```
 
+## Troubleshooting
+
+### エラーコードと対処法
+
+| エラー | 原因 | 対処法 |
+|-------|------|--------|
+| `invalid_grant` | 認可コード期限切れ / 既に使用済み / redirect_uri不一致 / code_verifier不正 | 再認証、redirect_uri確認、PKCE実装確認 |
+| `invalid_client` | クライアント認証情報が不正 / クライアントが存在しない / クライアント無効 | client_id/secret確認、認可サーバー設定確認 |
+| `unauthorized_client` | このgrant_typeが許可されていない / スコープが許可されていない | 認可サーバーでクライアント設定確認 |
+| `access_denied` | ユーザーが認可を拒否 / スコープが不正 | ユーザーに再認証依頼、スコープ見直し |
+| `invalid_scope` | 要求したスコープが不正または許可されていない | 有効なスコープのみ要求 |
+| `server_error` | 認可サーバー内部エラー | リトライ、サーバー管理者に連絡 |
+| `temporarily_unavailable` | サーバー一時的に利用不可 | しばらく待ってリトライ |
+
+### デバッグチェックリスト
+
+```javascript
+// 1. State検証失敗
+// 原因: CSRF攻撃、セッション切れ、ブラウザ戻るボタン
+console.log('Saved state:', sessionStorage.getItem('oauth2_state'));
+console.log('Returned state:', urlParams.get('state'));
+
+// 2. PKCE検証失敗
+// 原因: code_verifierの保存/取得ミス、エンコーディング問題
+console.log('Code verifier length:', codeVerifier.length); // 43-128
+console.log('Code challenge method:', 'S256'); // plainは非推奨
+
+// 3. トークン取得失敗
+// 原因: redirect_uri不一致、コード期限切れ
+console.log('Registered redirect_uri:', config.redirectUri);
+console.log('Actual callback URL:', window.location.href);
+
+// 4. APIアクセス401エラー
+// 原因: トークン期限切れ、audience不一致、スコープ不足
+const decoded = jwt_decode(accessToken);
+console.log('Token exp:', new Date(decoded.exp * 1000));
+console.log('Token aud:', decoded.aud);
+console.log('Token scope:', decoded.scope);
+```
+
+### 一般的な問題と解決策
+
+**問題**: 認可コードが既に使用済み
+```
+解決: 認可コードは1回限り使用可能。
+      ブラウザの再読み込みや戻るボタンで発生。
+      コールバック後は即座にリダイレクトして履歴を残さない。
+```
+
+**問題**: CORS エラー
+```
+解決: トークンエンドポイントへの直接リクエストはCORS制限あり。
+      BFF（Backend for Frontend）パターンを使用するか、
+      認可サーバーのCORS設定を確認。
+```
+
+**問題**: Safari/ITPでのサードパーティCookie制限
+```
+解決: Silent Renewがiframeで動作しない場合がある。
+      同一ドメインでの認証か、refresh_tokenベースの更新に変更。
+```
+
 ## Checklist
 
 ### Implementation Checklist
@@ -363,6 +425,8 @@ app.use(helmet({
 - [ ] セキュリティヘッダー設定
 - [ ] エラーメッセージが情報漏洩しない
 - [ ] リダイレクトURI完全一致検証
+- [ ] Rate Limiting実装
+- [ ] Audit Logging実装
 
 ## Related Files
 

@@ -234,6 +234,37 @@ function requireScopes(...scopes) {
 router.get('/admin/users', requireAuth, requireScopes('admin:read'), getUsers);
 ```
 
+### Role-Based Access Control
+
+```javascript
+// roleMiddleware.js
+function requireRole(role) {
+  return (req, res, next) => {
+    if (!req.user?.roles?.includes(role)) {
+      return res.status(403).json({ error: 'Insufficient permissions' });
+    }
+    next();
+  };
+}
+
+// 複数ロールのいずれかを要求
+function requireAnyRole(...roles) {
+  return (req, res, next) => {
+    const userRoles = req.user?.roles || [];
+    const hasAnyRole = roles.some(role => userRoles.includes(role));
+
+    if (!hasAnyRole) {
+      return res.status(403).json({ error: 'Insufficient permissions' });
+    }
+    next();
+  };
+}
+
+// 使用例
+router.delete('/api/users/:id', requireAuth, requireRole('admin'), deleteUser);
+router.get('/api/reports', requireAuth, requireAnyRole('admin', 'manager'), getReports);
+```
+
 ## Error Handling Patterns
 
 ### Centralized Error Handler

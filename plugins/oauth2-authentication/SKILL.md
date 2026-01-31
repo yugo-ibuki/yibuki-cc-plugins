@@ -87,8 +87,45 @@ OAuth2認証とOpenID Connectの包括的な実装ガイド。
 - localStorage へのトークン保存
 - Resource Owner Password Credentials
 
+## OIDC Discovery
+
+認可サーバーの設定は `.well-known/openid-configuration` から自動取得可能:
+
+```bash
+GET https://auth.example.com/.well-known/openid-configuration
+```
+
+主要なエンドポイント:
+- `authorization_endpoint` - 認可リクエスト先
+- `token_endpoint` - トークン交換先
+- `userinfo_endpoint` - ユーザー情報取得先
+- `jwks_uri` - JWT検証用公開鍵
+
+## Standard Scopes
+
+| スコープ | 説明 |
+|---------|------|
+| `openid` | OIDC必須（ID Token取得） |
+| `profile` | ユーザープロフィール情報 |
+| `email` | メールアドレス |
+| `address` | 住所情報 |
+| `phone` | 電話番号 |
+| `offline_access` | Refresh Token要求 |
+
+## Resources
+
+### 公式仕様
+- [RFC 6749 - OAuth 2.0](https://tools.ietf.org/html/rfc6749)
+- [RFC 7636 - PKCE](https://tools.ietf.org/html/rfc7636)
+- [RFC 6750 - Bearer Token](https://tools.ietf.org/html/rfc6750)
+- [OpenID Connect Core](https://openid.net/specs/openid-connect-core-1_0.html)
+
+### セキュリティガイダンス
+- [OAuth 2.0 Security Best Practices](https://tools.ietf.org/html/draft-ietf-oauth-security-topics)
+- [OAuth 2.0 for Browser-Based Apps](https://tools.ietf.org/html/draft-ietf-oauth-browser-based-apps)
+
 ## Version & Metadata
 
 - **Skill Version**: 1.0.0
-- **Last Updated**: October 2025
+- **Last Updated**: January 2026
 - **Category**: Authentication, Authorization, Security
