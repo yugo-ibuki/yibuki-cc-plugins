@@ -85,6 +85,15 @@
       "author": {
         "name": "yugo-ibuki"
       }
+    },
+    {
+      "name": "jj-helper-plugin",
+      "source": "./plugins/jj-helper",
+      "description": "Jujutsu (jj) バージョン管理のヘルパー。コマンドリファレンス、Gitとの比較、ワークフロー、トラブルシューティングを提供",
+      "version": "1.0.0",
+      "author": {
+        "name": "yugo-ibuki"
+      }
     }
   ]
 }

@@ -1,0 +1,17 @@
+{
+  "name": "jj-helper-plugin",
+  "version": "1.0.0",
+  "description": "Jujutsu (jj) バージョン管理のヘルパー。コマンドリファレンス、Gitとの比較、ワークフロー、トラブルシューティングを提供",
+  "author": {
+    "name": "yugo-ibuki"
+  },
+  "keywords": [
+    "jujutsu",
+    "jj",
+    "version-control",
+    "vcs",
+    "git",
+    "workflow",
+    "reference"
+  ]
+}
