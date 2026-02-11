@@ -75,6 +75,21 @@ jj new main  # 名前なしで分岐
 jj bookmark create feature  # push時に名前をつける
 ```
 
+### Bookmark Tracking（重要: jj 0.37.0+）
+
+jj 0.37.0以降、push後にリモートに作られたbookmarkを**自動でtrackしない**のがデフォルトの動作です。trackしないと、次回の`jj git fetch`時にリモートの変更がローカルbookmarkに反映されません。
+
+```bash
+# 毎回必要なフルワークフロー
+jj bookmark create my-branch
+jj git push --bookmark my-branch
+jj bookmark track my-branch@origin  # ← これを忘れると diverged エラーの原因に
+
+# 自動trackを有効にする設定（推奨）
+jj config set --user git.auto-local-bookmark true
+# これを設定すれば、push後に自動でtrackされるようになる
+```
+
 ## Quick Reference
 
 ### 基本コマンド
@@ -137,6 +152,7 @@ jj new
 # リモートにプッシュ（bookmarkが必要）
 jj bookmark create my-feature
 jj git push --bookmark my-feature
+jj bookmark track my-feature@origin  # リモートとの追跡を設定
 ```
 
 ### 2. Squash Workflow（推奨）
@@ -278,12 +294,22 @@ jj squash --from <source> --into <destination>
 ```bash
 jj bookmark create <name> -r @
 jj git push --bookmark <name>
+jj bookmark track <name>@origin  # 追跡を設定
 ```
 
 **Q: Gitブランチと同期したい**
 ```bash
 jj git fetch
 jj bookmark track <branch>@origin
+```
+
+**Q: push後にbookmarkが「diverged」になる**
+```bash
+# 原因: push後にtrackしていなかった
+jj bookmark track <name>@origin
+
+# 今後の予防: 自動trackを有効にする
+jj config set --user git.auto-local-bookmark true
 ```
 
 ## Documentation Reference

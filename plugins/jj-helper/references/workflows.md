@@ -31,6 +31,7 @@ jj describe -m "feat: ユーザー認証機能を実装"
 # 8. bookmarkを作成してpush
 jj bookmark create auth-feature
 jj git push --bookmark auth-feature
+jj bookmark track auth-feature@origin  # リモートとの追跡を設定
 ```
 
 ### メリット
@@ -242,19 +243,25 @@ jj bookmark create my-feature
 # 5. プッシュ
 jj git push --bookmark my-feature
 
-# 6. GitHub上でPRを作成
+# 6. リモートとの追跡を設定（jj 0.37.0+では必須）
+jj bookmark track my-feature@origin
 
-# 7. レビュー対応
+# 7. GitHub上でPRを作成
+
+# 8. レビュー対応
 jj git fetch  # レビューコメントを確認後
 jj edit my-feature
 # 修正...
 jj new
 jj git push --bookmark my-feature
 
-# 8. マージ後のクリーンアップ
+# 9. マージ後のクリーンアップ
 jj git fetch
 jj bookmark delete my-feature
 ```
+
+> **💡 Tips**: `jj config set --user git.auto-local-bookmark true` を設定すると、
+> push後に自動でtrackされるようになり、手順6が不要になります。
 
 ## 10. Daily Workflow Example
 
@@ -280,4 +287,5 @@ jj describe -m "feat: 完成した機能"
 # プッシュ
 jj bookmark create todays-work
 jj git push --bookmark todays-work
+jj bookmark track todays-work@origin  # リモートとの追跡を設定
 ```

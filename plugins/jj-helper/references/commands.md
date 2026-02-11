@@ -215,10 +215,15 @@ jj bookmark delete <name>
 ```
 
 ### jj bookmark track
-リモートbookmarkを追跡
+リモートbookmarkを追跡（jj 0.37.0+ではpush後に必須）
 
 ```bash
 jj bookmark track <name>@<remote>
+
+# 例: push後にリモートと追跡を設定
+jj bookmark create my-branch
+jj git push --bookmark my-branch
+jj bookmark track my-branch@origin  # これを忘れるとdivergedエラーの原因に
 ```
 
 ## Rebase操作
@@ -331,4 +336,7 @@ jj workspace forget <name>
 jj config list
 jj config set --user user.name "Your Name"
 jj config set --user user.email "your@email.com"
+
+# push後にbookmarkを自動でtrackする設定（推奨）
+jj config set --user git.auto-local-bookmark true
 ```
