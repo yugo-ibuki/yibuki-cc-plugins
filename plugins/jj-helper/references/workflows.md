@@ -260,8 +260,9 @@ jj git fetch
 jj bookmark delete my-feature
 ```
 
-> **💡 Tips**: `jj config set --user git.auto-local-bookmark true` を設定すると、
-> push後に自動でtrackされるようになり、手順6が不要になります。
+> **💡 Tips**: 以下を設定すると手順6が不要になります:
+> - `jj config set --user git.auto-local-bookmark true` — push時に自動track
+> - `jj config set --user remotes.origin.auto-track-bookmarks '*'` — fetch時にリモートのbookmarkを自動track
 
 ## 10. Daily Workflow Example
 

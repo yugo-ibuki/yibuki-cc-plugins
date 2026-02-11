@@ -88,7 +88,15 @@ jj bookmark track my-branch@origin  # ← これを忘れると diverged エラ�
 # 自動trackを有効にする設定（推奨）
 jj config set --user git.auto-local-bookmark true
 # これを設定すれば、push後に自動でtrackされるようになる
+
+# fetch時にリモートのbookmarkを自動trackする設定
+jj config set --user remotes.origin.auto-track-bookmarks '*'
+# '*' ですべてのbookmarkを自動追跡（特定のパターンも指定可能）
 ```
+
+**2つの設定の違い**:
+- `git.auto-local-bookmark`: push時にローカルbookmarkを自動でリモートに関連付ける
+- `remotes.origin.auto-track-bookmarks`: fetch時にリモートのbookmarkを自動でローカルにtrackする
 
 ## Quick Reference
 
@@ -310,6 +318,7 @@ jj bookmark track <name>@origin
 
 # 今後の予防: 自動trackを有効にする
 jj config set --user git.auto-local-bookmark true
+jj config set --user remotes.origin.auto-track-bookmarks '*'
 ```
 
 ## Documentation Reference

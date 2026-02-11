@@ -339,4 +339,14 @@ jj config set --user user.email "your@email.com"
 
 # push後にbookmarkを自動でtrackする設定（推奨）
 jj config set --user git.auto-local-bookmark true
+
+# fetch時にリモートのbookmarkを自動trackする設定
+jj config set --user remotes.origin.auto-track-bookmarks '*'
+# '*' = すべてのbookmark、特定パターンも可（例: 'main' や 'release/*'）
 ```
+
+**設定の違い**:
+| 設定 | 効果 | タイミング |
+|------|------|-----------|
+| `git.auto-local-bookmark` | ローカルbookmarkをリモートに自動関連付け | push時 |
+| `remotes.origin.auto-track-bookmarks` | リモートのbookmarkをローカルに自動track | fetch時 |

@@ -227,7 +227,7 @@ jj git push --bookmark <branch>  # 自動的にリベースされている
 ## jjで注意すべき点
 
 1. **push時はbookmark必要**: GitHubにpushするにはbookmarkが必要
-2. **push後のtrack**: jj 0.37.0+ではpush後に`jj bookmark track <name>@origin`が必要（または`git.auto-local-bookmark`設定で自動化）
+2. **push後のtrack**: jj 0.37.0+ではpush後に`jj bookmark track <name>@origin`が必要（`git.auto-local-bookmark`と`remotes.origin.auto-track-bookmarks`設定で自動化可能）
 3. **IDEサポート**: Git統合ほど充実していない（colocatedで回避可能）
 4. **チーム導入**: 全員がjjを使う必要はない（Git互換）
 5. **GUIツール**: 少ない（CLIがメイン）
@@ -518,4 +518,6 @@ jj log -r '@-3::@'    # 3つ前から現在まで
 3. **`jj undo`を信頼する**: 失敗しても必ず戻れる
 4. **匿名ブランチを活用**: ブランチ名は後から考える
 5. **`jj op log`を確認する習慣**: 操作履歴が見られると安心
-6. **auto-local-bookmarkを設定する**: `jj config set --user git.auto-local-bookmark true` で push 後の track を自動化
+6. **auto-trackを設定する**: bookmark の自動追跡で手間を省く
+   - `jj config set --user git.auto-local-bookmark true` — push 時の自動 track
+   - `jj config set --user remotes.origin.auto-track-bookmarks '*'` — fetch 時にリモートの bookmark を自動 track
