@@ -15,6 +15,9 @@ plugins/
   │   ├── .claude-plugin/plugin.json
   │   ├── commands/pr-creator.md
   │   └── assets/PR_TEMPLATE.md
+  ├── post-impl-review/             # Post-implementation code review
+  │   ├── .claude-plugin/plugin.json
+  │   └── skills/post-impl-review.md
   └── custom-doc/                  # Documentation management
       ├── .claude-plugin/plugin.json
       ├── commands/                # Slash commands
@@ -73,6 +76,7 @@ disable-model-invocation: false     # Optional: prevent auto-invocation
 | `/update-doc` | Updates existing documentation |
 | `/create-investigate-doc` | Creates investigation reports |
 | `/update-investigate-doc` | Updates investigation reports |
+| `/post-impl-review` | Runs post-implementation code review |
 
 ## Scripts
 

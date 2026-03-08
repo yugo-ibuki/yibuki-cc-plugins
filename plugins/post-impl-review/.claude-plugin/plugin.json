@@ -1,0 +1,9 @@
+{
+  "name": "post-impl-review-plugin",
+  "version": "1.0.0",
+  "description": "実装完了後に自動でコードレビューを行い、重大な問題は自動修正するプラグイン",
+  "author": {
+    "name": "yugo-ibuki"
+  },
+  "keywords": ["review", "code-review", "post-implementation", "quality"]
+}
