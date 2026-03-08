@@ -9,7 +9,6 @@ allowed-tools:
   - Glob
 argument-hint: [PR番号 or ブランチ名]
 description: PRの変更点をまとめるコメントを作成
-model: claude-3-5-haiku-20241022
 ---
 
 # PR Review Comment
