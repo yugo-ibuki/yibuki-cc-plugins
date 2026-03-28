@@ -1,0 +1,9 @@
+{
+  "name": "dispatch-team-plugin",
+  "version": "1.0.0",
+  "description": "タスクに合わせて適切なエージェントチームを編成し、並列実行する",
+  "author": {
+    "name": "yugo-ibuki"
+  },
+  "keywords": ["team", "dispatch", "parallel", "agent", "orchestration"]
+}
