@@ -1,0 +1,42 @@
+lockfile_version: '1'
+generated_at: '2026-05-03T07:26:51.460311+00:00'
+apm_version: 0.11.0
+dependencies:
+- repo_url: microsoft/apm-sample-package
+  host: github.com
+  resolved_commit: fb2851683be0e0e7711421d518bd8dba23b0b1f6
+  resolved_ref: v1.0.0
+  package_type: apm_package
+  deployed_files:
+  - .claude/agents/design-reviewer.md
+  - .claude/commands/accessibility-audit.md
+  - .claude/commands/design-review.md
+  - .claude/rules/design-standards.md
+  - .claude/skills/style-checker
+  - .github/agents/design-reviewer.agent.md
+  - .github/instructions/design-standards.instructions.md
+  - .github/prompts/accessibility-audit.prompt.md
+  - .github/prompts/design-review.prompt.md
+  - .github/skills/style-checker
+  deployed_file_hashes:
+    .claude/agents/design-reviewer.md: sha256:616988766ebc7d42cc6f599a17d1ad3ab8164e139fad82e111af5441fe3986cb
+    .claude/commands/accessibility-audit.md: sha256:6d5c7d5d0038683e5658f4a90cdee61b2fc3a27b3023fc63ed6649d1ea6b6b92
+    .claude/commands/design-review.md: sha256:ed0741675cb37dd3fe77fbd199800582f745b4ee84e34ce6a92b8eb0bd6d7b81
+    .claude/rules/design-standards.md: sha256:5756b425ca79c83912e67102b32d623192bef7349ee7696275312b92c283a05e
+    .github/agents/design-reviewer.agent.md: sha256:616988766ebc7d42cc6f599a17d1ad3ab8164e139fad82e111af5441fe3986cb
+    .github/instructions/design-standards.instructions.md: sha256:6f5d994d6437416e14e4ca5540f4d1cf06fad079728a1419acfb1dd7038ec38d
+    .github/prompts/accessibility-audit.prompt.md: sha256:c3382c6b7ac6ba38cf66d345923be79c5a46b8783a0d33aac457ff60f1b6597a
+    .github/prompts/design-review.prompt.md: sha256:f10919f07eec83c62c7912e318382b472ad27eb1c22c11525b813522960e8e06
+  content_hash: sha256:744cca54cc8ff7ca90aa1dd621c2f98c6291cd793815afe8518001cc94b8aba9
+- repo_url: github/awesome-copilot
+  host: github.com
+  resolved_commit: 90921cc46f4e452ea379e70884d60ec25263f16a
+  virtual_path: skills/review-and-refactor
+  is_virtual: true
+  depth: 2
+  resolved_by: microsoft/apm-sample-package
+  package_type: claude_skill
+  deployed_files:
+  - .claude/skills/review-and-refactor
+  - .github/skills/review-and-refactor
+  content_hash: sha256:9236d06a1500089ddb46975b866e9a63478e502afe7095b1980c618678a7c7fe
