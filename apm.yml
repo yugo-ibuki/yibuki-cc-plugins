@@ -55,6 +55,3 @@ marketplace:
     source: ./plugins/dispatch-team
     description: タスクに合わせて適切なエージェントチームを編成し、並列実行する
     version: 1.0.0
-dependencies:
-  apm:
-  - microsoft/apm-sample-package#v1.0.0
