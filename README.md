@@ -14,14 +14,14 @@ brew install microsoft/apm/apm
 apm --version
 apm update
 
-# marketplace 定義を検証
+# APM 側の marketplace 定義を検証
 apm pack --dry-run -v
 
-# apm.yml から .claude-plugin/marketplace.json を再生成
-apm pack
+# 生成結果を確認したい場合は、既存の Claude Code marketplace を直接上書きしない
+apm pack --marketplace-output /tmp/yibuki-cc-plugins-marketplace.json
 ```
 
-`apm.yml` を編集元、`.claude-plugin/marketplace.json` を生成物として扱います。プラグインを追加・更新したら `apm.yml` の `marketplace.packages` を更新し、`apm pack` を実行して両方のファイルをコミットしてください。
+`apm.yml` は APM 用の marketplace authoring 定義です。既存の `.claude-plugin/marketplace.json` は Claude Code marketplace として手元の形式を維持します。`apm pack` は marketplace JSON を正規化して `author` などの既存メタデータを落とすことがあるため、通常は `--dry-run` または `--marketplace-output` で確認してください。
 
 `apm marketplace check` は remote source の ref 解決確認向けです。このリポジトリのように `source: ./plugins/...` のローカルパス package を使う場合は、`apm pack --dry-run -v` で生成確認してください。
 

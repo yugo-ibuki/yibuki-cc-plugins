@@ -7,75 +7,111 @@
   "plugins": [
     {
       "name": "pr-creator-plugin",
+      "source": "./plugins/pr-creator",
       "description": "Git commitとPRを作成します",
       "version": "1.0.0",
-      "source": "./plugins/pr-creator"
+      "author": {
+        "name": "yugo-ibuki"
+      }
     },
     {
       "name": "custom-doc-plugin",
+      "source": "./plugins/custom-doc",
       "description": "カスタムドキュメントの作成・更新を行います",
       "version": "1.0.0",
-      "source": "./plugins/custom-doc"
+      "author": {
+        "name": "yugo-ibuki"
+      }
     },
     {
       "name": "project-onboarding-plugin",
+      "source": "./plugins/project-onboarding",
       "description": "プロジェクト参加者向けのオンボーディング支援。プロジェクト構造の把握やタスク関連ファイルの検索",
       "version": "1.2.0",
-      "source": "./plugins/project-onboarding"
+      "author": {
+        "name": "yugo-ibuki"
+      }
     },
     {
       "name": "pr-review-comment-plugin",
+      "source": "./plugins/pr-review-comment",
       "description": "PRの変更点をまとめるコメントを作成します",
       "version": "1.0.1",
-      "source": "./plugins/pr-review-comment"
+      "author": {
+        "name": "yugo-ibuki"
+      }
     },
     {
       "name": "unused-imports-hook-plugin",
+      "source": "./plugins/unused-imports-hook",
       "description": "コミット前に未使用のimportを自動削除するフック",
       "version": "1.0.0",
-      "source": "./plugins/unused-imports-hook"
+      "author": {
+        "name": "yugo-ibuki"
+      }
     },
     {
       "name": "lang-learner-plugin",
+      "source": "./plugins/lang-learner",
       "description": "新しいプログラミング言語を学ぶ際に、公式ドキュメントから重要な概念を抽出し、他言語との比較も含めて解説",
       "version": "1.0.0",
-      "source": "./plugins/lang-learner"
+      "author": {
+        "name": "yugo-ibuki"
+      }
     },
     {
       "name": "task-splitter-plugin",
+      "source": "./plugins/task-splitter",
       "description": "タスクを分析して並列実行可能なサブタスクに分割し、各サブタスクに関連ファイルを紐付ける",
       "version": "1.0.0",
-      "source": "./plugins/task-splitter"
+      "author": {
+        "name": "yugo-ibuki"
+      }
     },
     {
       "name": "pre-compact-doc-hook-plugin",
+      "source": "./plugins/pre-compact-doc-hook",
       "description": "セッションがcompactingされる前にカスタムドキュメントの作成/更新を促すフック",
       "version": "1.0.0",
-      "source": "./plugins/pre-compact-doc-hook"
+      "author": {
+        "name": "yugo-ibuki"
+      }
     },
     {
       "name": "oauth2-authentication-plugin",
+      "source": "./plugins/oauth2-authentication",
       "description": "OAuth2認証とOpenID Connectの包括的な実装ガイド。認証フロー、トークン管理、セキュリティベストプラクティスを提供",
       "version": "1.0.0",
-      "source": "./plugins/oauth2-authentication"
+      "author": {
+        "name": "yugo-ibuki"
+      }
     },
     {
       "name": "jj-helper-plugin",
+      "source": "./plugins/jj-helper",
       "description": "Jujutsu (jj) バージョン管理のヘルパー。コマンドリファレンス、Gitとの比較、ワークフロー、トラブルシューティングを提供",
       "version": "1.0.0",
-      "source": "./plugins/jj-helper"
+      "author": {
+        "name": "yugo-ibuki"
+      }
     },
     {
       "name": "post-impl-review-plugin",
+      "source": "./plugins/post-impl-review",
       "description": "実装完了後に自動でコードレビューを行い、重大な問題は自動修正するプラグイン",
       "version": "1.0.0",
-      "source": "./plugins/post-impl-review"
+      "author": {
+        "name": "yugo-ibuki"
+      }
     },
     {
       "name": "dispatch-team-plugin",
+      "source": "./plugins/dispatch-team",
       "description": "タスクに合わせて適切なエージェントチームを編成し、並列実行する",
       "version": "1.0.0",
-      "source": "./plugins/dispatch-team"
+      "author": {
+        "name": "yugo-ibuki"
+      }
     }
   ]
 }
