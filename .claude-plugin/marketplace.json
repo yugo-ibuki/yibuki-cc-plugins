@@ -6,37 +6,10 @@
   },
   "plugins": [
     {
-      "name": "pr-creator-plugin",
-      "source": "./plugins/pr-creator",
-      "description": "Git commitとPRを作成します",
-      "version": "1.0.0",
-      "author": {
-        "name": "yugo-ibuki"
-      }
-    },
-    {
-      "name": "custom-doc-plugin",
-      "source": "./plugins/custom-doc",
-      "description": "カスタムドキュメントの作成・更新を行います",
-      "version": "1.0.0",
-      "author": {
-        "name": "yugo-ibuki"
-      }
-    },
-    {
       "name": "project-onboarding-plugin",
       "source": "./plugins/project-onboarding",
       "description": "プロジェクト参加者向けのオンボーディング支援。プロジェクト構造の把握やタスク関連ファイルの検索",
       "version": "1.2.0",
-      "author": {
-        "name": "yugo-ibuki"
-      }
-    },
-    {
-      "name": "pr-review-comment-plugin",
-      "source": "./plugins/pr-review-comment",
-      "description": "PRの変更点をまとめるコメントを作成します",
-      "version": "1.0.1",
       "author": {
         "name": "yugo-ibuki"
       }
@@ -69,36 +42,9 @@
       }
     },
     {
-      "name": "pre-compact-doc-hook-plugin",
-      "source": "./plugins/pre-compact-doc-hook",
-      "description": "セッションがcompactingされる前にカスタムドキュメントの作成/更新を促すフック",
-      "version": "1.0.0",
-      "author": {
-        "name": "yugo-ibuki"
-      }
-    },
-    {
       "name": "oauth2-authentication-plugin",
       "source": "./plugins/oauth2-authentication",
       "description": "OAuth2認証とOpenID Connectの包括的な実装ガイド。認証フロー、トークン管理、セキュリティベストプラクティスを提供",
-      "version": "1.0.0",
-      "author": {
-        "name": "yugo-ibuki"
-      }
-    },
-    {
-      "name": "jj-helper-plugin",
-      "source": "./plugins/jj-helper",
-      "description": "Jujutsu (jj) バージョン管理のヘルパー。コマンドリファレンス、Gitとの比較、ワークフロー、トラブルシューティングを提供",
-      "version": "1.0.0",
-      "author": {
-        "name": "yugo-ibuki"
-      }
-    },
-    {
-      "name": "post-impl-review-plugin",
-      "source": "./plugins/post-impl-review",
-      "description": "実装完了後に自動でコードレビューを行い、重大な問題は自動修正するプラグイン",
       "version": "1.0.0",
       "author": {
         "name": "yugo-ibuki"

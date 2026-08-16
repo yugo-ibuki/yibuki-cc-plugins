@@ -10,28 +10,7 @@ Claude Code plugin collection repository (`yibuki-cc-plugins`). Provides custom 
 
 ```
 .claude-plugin/marketplace.json    # Plugin registry
-plugins/
-  ├── pr-creator/                  # Git commit & PR creation
-  │   ├── .claude-plugin/plugin.json
-  │   ├── commands/pr-creator.md
-  │   └── assets/PR_TEMPLATE.md
-  ├── post-impl-review/             # Post-implementation code review
-  │   ├── .claude-plugin/plugin.json
-  │   └── skills/post-impl-review.md
-  └── custom-doc/                  # Documentation management
-      ├── .claude-plugin/plugin.json
-      ├── commands/                # Slash commands
-      │   ├── create-doc.md
-      │   ├── update-doc.md
-      │   ├── create-investigate-doc.md
-      │   └── update-investigate-doc.md
-      ├── scripts/
-      │   ├── markdown-to-html.py
-      │   └── select-doc.py
-      └── skills/                  # Internal skills (auto-invoked by commands)
-          ├── search-related-docs.md
-          ├── load-doc-context.md
-          └── doc-to-html.md
+plugins/                           # Individual plugin directories
 ```
 
 ## Command Definition Format
@@ -67,27 +46,6 @@ disable-model-invocation: false     # Optional: prevent auto-invocation
 ---
 ```
 
-## Available Commands
-
-| Command | Description |
-|---------|-------------|
-| `/pr-creator` | Creates git commits and PRs |
-| `/create-doc` | Creates documentation in `.claude/custom-documents/` |
-| `/update-doc` | Updates existing documentation |
-| `/create-investigate-doc` | Creates investigation reports |
-| `/update-investigate-doc` | Updates investigation reports |
-| `/post-impl-review` | Runs post-implementation code review |
-
-## Scripts
-
-```bash
-# Generate HTML from Markdown
-python plugins/custom-doc/scripts/markdown-to-html.py <file_or_directory>
-
-# Interactive document selection
-python plugins/custom-doc/scripts/select-doc.py [keyword]
-```
-
 ## Adding New Plugins
 
 1. Create `plugins/<plugin-name>/`
@@ -97,7 +55,4 @@ python plugins/custom-doc/scripts/select-doc.py [keyword]
 
 ## Key Patterns
 
-- Documents go to `.claude/custom-documents/<name>/` in target projects
-- Commands reference skills via `## 参照スキル` section
-- Skills auto-search related docs before create/update operations
 - All user-facing text in Japanese (日本語)
