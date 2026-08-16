@@ -1,0 +1,11 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "save-article-summary",
+  "version": "1.0.0",
+  "description": "記事URLを根拠に日本語で要約し、YoyakuのJSON形式でsummary-articlesリポジトリへ保存する",
+  "author": {
+    "name": "yugo-ibuki"
+  },
+  "repository": "https://github.com/yugo-ibuki/yibuki-cc-plugins",
+  "keywords": ["article", "summary", "yoyaku", "json", "zenn", "qiita"]
+}

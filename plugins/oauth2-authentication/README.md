@@ -811,8 +811,8 @@ const codeChallenge = await generateCodeChallenge(codeVerifier);
 
 ## Next Steps
 
-1. Review the complete [SKILL.md](./SKILL.md) for detailed implementation guides
-2. Explore [EXAMPLES.md](./EXAMPLES.md) for real-world code examples
+1. Review the complete [SKILL.md](./skills/oauth2-authentication/SKILL.md) for detailed implementation guides
+2. Explore [common-patterns.md](./skills/oauth2-authentication/references/common-patterns.md) for real-world code examples
 3. Choose the appropriate OAuth2 flow for your application
 4. Implement security best practices from day one
 5. Test thoroughly with both success and error scenarios
@@ -820,4 +820,4 @@ const codeChallenge = await generateCodeChallenge(codeVerifier);
 
 ---
 
-**Need Help?** Refer to SKILL.md for comprehensive documentation and EXAMPLES.md for complete working examples.
+**Need Help?** Refer to SKILL.md for comprehensive documentation and common-patterns.md for complete working examples.

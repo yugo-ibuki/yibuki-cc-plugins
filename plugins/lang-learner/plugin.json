@@ -1,0 +1,11 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "lang-learner",
+  "version": "1.0.0",
+  "description": "公式ドキュメントを根拠にプログラミング言語の重要概念を他言語との比較付きで説明する",
+  "author": {
+    "name": "yugo-ibuki"
+  },
+  "repository": "https://github.com/yugo-ibuki/yibuki-cc-plugins",
+  "keywords": ["learning", "language", "documentation", "concepts", "education", "programming"]
+}

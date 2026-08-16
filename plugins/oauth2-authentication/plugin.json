@@ -1,0 +1,11 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "oauth2-authentication",
+  "version": "1.0.0",
+  "description": "OAuth2認証とOpenID Connectのフロー、トークン管理、実装例、セキュリティ指針を提供する",
+  "author": {
+    "name": "yugo-ibuki"
+  },
+  "repository": "https://github.com/yugo-ibuki/yibuki-cc-plugins",
+  "keywords": ["oauth2", "authentication", "authorization", "oidc", "openid-connect", "pkce", "security", "token"]
+}

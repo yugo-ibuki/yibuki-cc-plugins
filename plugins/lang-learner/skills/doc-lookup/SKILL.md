@@ -1,11 +1,6 @@
 ---
 name: doc-lookup
-description: プログラミング言語の公式ドキュメントを検索・取得するスキル。Context7 MCPを優先し、取得できない場合はWebSearchでフォールバック。/learn-lang コマンドで使用。
-allowed-tools:
-  - mcp__context7__resolve-library-id
-  - mcp__context7__query-docs
-  - WebSearch
-  - WebFetch
+description: プログラミング言語や言語機能について、公式ドキュメントを検索・取得して根拠を整理する。特定言語の仕様、構文、標準機能、最新の公式情報を調べる依頼で使用する。
 ---
 
 # doc-lookup スキル
@@ -14,7 +9,7 @@ allowed-tools:
 
 ## 目的
 
-`/learn-lang` コマンド実行時に：
+言語学習の依頼で：
 1. 指定された言語の公式ドキュメントを取得
 2. 特定トピックに関連する情報を抽出
 3. 参照リンクを収集
@@ -154,14 +149,14 @@ content:
 3. 結果を構造化して返却
 ```
 
-### コマンドへの組み込み
+### 言語学習への組み込み
 
 ```markdown
-## /learn-lang での使用
+## lang-learner での使用
 
-1. `skills/doc-lookup/SKILL.md` を参照
+1. このスキルで公式ドキュメントを取得
 2. 言語名とトピックを渡してドキュメントを取得
-3. 取得結果を `skills/concept-explainer/SKILL.md` に渡す
+3. 取得結果へ `concept-explainer` の手順を適用
 ```
 
 ## エラーハンドリング

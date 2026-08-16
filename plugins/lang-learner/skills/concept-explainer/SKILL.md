@@ -1,10 +1,6 @@
 ---
 name: concept-explainer
-description: ドキュメントから重要な概念を抽出し、他言語との比較を含めて解説するスキル。/learn-lang コマンドで使用。学習者が理解しやすいように、既知の言語との対比を重視。
-allowed-tools:
-  - Read
-  - WebSearch
-  - mcp__context7__query-docs
+description: プログラミング言語の公式資料から重要概念を抽出し、コード例、注意点、他言語との比較を含めて説明する。新しい言語や言語機能を既知の言語と対比して理解したい依頼で使用する。
 ---
 
 # concept-explainer スキル
@@ -13,7 +9,7 @@ allowed-tools:
 
 ## 目的
 
-`/learn-lang` コマンド実行時に：
+言語学習の依頼で：
 1. ドキュメントから核となる概念を抽出
 2. 各概念を他言語と比較して解説
 3. 学習者が理解しやすい形式で出力
@@ -128,7 +124,7 @@ cross_language_mapping:
 
 各概念について以下の構造で解説を生成：
 
-```markdown
+````markdown
 ### [概念名]
 
 **概要**
@@ -164,7 +160,7 @@ cross_language_mapping:
 **📚 参考リンク**
 - [公式ドキュメント](URL)
 - [関連チュートリアル](URL)
-```
+````
 
 ## 比較パターンテンプレート
 
@@ -206,7 +202,7 @@ cross_language_mapping:
 
 ### 完全な出力例
 
-```markdown
+````markdown
 # Rust: 所有権 (Ownership)
 
 ## 📚 参照ドキュメント
@@ -237,7 +233,7 @@ fn main() {
     // println!("{}", s1);            // エラー！s1は無効
     println!("{}", s2);               // OK
 }
-```
+````
 
 **🔄 他言語との比較**
 

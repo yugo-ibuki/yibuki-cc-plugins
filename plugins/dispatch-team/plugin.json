@@ -1,0 +1,11 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "dispatch-team",
+  "version": "1.0.0",
+  "description": "タスクに合わせて適切なエージェントチームを編成し、並列実行する",
+  "author": {
+    "name": "yugo-ibuki"
+  },
+  "repository": "https://github.com/yugo-ibuki/yibuki-cc-plugins",
+  "keywords": ["team", "dispatch", "parallel", "agent", "orchestration"]
+}
